@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5a83a35e-9a56-4255-8626-53bb391928a5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/about.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/contacts-v3.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/contacts-v3.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/demo-booking-directory.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/demo-booking-directory.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/demo-business-consulting.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/demo-business-consulting.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/demo-creative-agency.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/demo-creative-agency.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/demo-mobile-app.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/demo-mobile-app.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/demo-product-gadget.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/demo-product-gadget.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/demo-product-software.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/demo-product-software.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/demo-shop-homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/demo-shop-homepage.html" afterDir="false" />
-    </list>
+    <list default="true" id="5a83a35e-9a56-4255-8626-53bb391928a5" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -81,7 +70,7 @@
       <workItem from="1629795278367" duration="674000" />
       <workItem from="1629795992691" duration="487000" />
       <workItem from="1629797384918" duration="5251000" />
-      <workItem from="1629802827952" duration="298000" />
+      <workItem from="1629802827952" duration="940000" />
     </task>
     <servers />
   </component>
