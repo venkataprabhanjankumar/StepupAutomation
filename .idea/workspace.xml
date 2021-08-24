@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5a83a35e-9a56-4255-8626-53bb391928a5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/templates/demo-coworking-space.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/demo-coworking-space.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/demo-event-landing.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/demo-event-landing.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/demo-food-blog.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/demo-food-blog.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +72,7 @@
       <workItem from="1629795278367" duration="674000" />
       <workItem from="1629795992691" duration="487000" />
       <workItem from="1629797384918" duration="5251000" />
-      <workItem from="1629802827952" duration="2251000" />
+      <workItem from="1629802827952" duration="2666000" />
     </task>
     <servers />
   </component>
