@@ -21,6 +21,8 @@
     <link rel="mask-icon" color="#5bbad5" href="{% static 'safari-pinned-tab.svg' %}">
     <meta name="msapplication-TileColor" content="#766df4">
     <meta name="theme-color" content="#ffffff">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="{% static 'js/auth.js' %}"></script>
     <!-- Page loading styles-->
     <style>
       .page-loading {
@@ -141,16 +143,18 @@
               </div>
               <div class="modal-body px-4">
                 <p class="fs-ms text-muted">Sign in to your account using email and password provided during registration.</p>
-                <form class="needs-validation" novalidate>
+                <p id="login-msg"></p>
+                <form class="needs-validation" novalidate action="signin" method="post">
+                  {% csrf_token %}
                   <div class="mb-3">
                     <div class="input-group"><i class="ai-mail position-absolute top-50 start-0 translate-middle-y ms-3"></i>
-                      <input class="form-control rounded" type="email" placeholder="Email" required>
+                      <input class="form-control rounded" type="text" placeholder="Email or Username" name="email" id="emaill" autocomplete="false" required>
                     </div>
                   </div>
                   <div class="mb-3">
                     <div class="input-group"><i class="ai-lock position-absolute top-50 start-0 translate-middle-y ms-3"></i>
                       <div class="password-toggle w-100">
-                        <input class="form-control" type="password" placeholder="Password" required>
+                        <input class="form-control" type="password" placeholder="Password" name="password" id="passwordl" required>
                         <label class="password-toggle-btn" aria-label="Show/hide password">
                           <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
                         </label>
@@ -159,11 +163,11 @@
                   </div>
                   <div class="d-flex justify-content-between align-items-center mb-3 mb-3">
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="keep-signed">
+                      <input class="form-check-input" type="checkbox" value="keepme" id="keep-signed" name="keepsignin">
                       <label class="form-check-label fs-sm" for="keep-signed">Keep me signed in</label>
                     </div><a class="nav-link-style fs-ms" href="password-recovery.html">Forgot password?</a>
                   </div>
-                  <button class="btn btn-primary d-block w-100" type="submit">Sign in</button>
+                  <button class="btn btn-primary d-block w-100" type="submit" id="submitl">Sign in</button>
                   <p class="fs-sm pt-3 mb-0">Don't have an account? <a href='#' class='fw-medium' data-view='#modal-signup-view'>Sign up</a></p>
                 </form>
               </div>
@@ -175,26 +179,34 @@
               </div>
               <div class="modal-body px-4">
                 <p class="fs-ms text-muted">Registration takes less than a minute but gives you full control over your orders.</p>
-                <form class="needs-validation" novalidate>
+                  <p id="register-message"></p>
+                <form class="needs-validation" novalidate method="post">
+                  {% csrf_token %}
                   <div class="mb-3">
-                    <input class="form-control" type="text" placeholder="Full name" required>
+                    <input class="form-control" type="text" placeholder="Fist Name" name="first_name" id="first_name" required>
                   </div>
                   <div class="mb-3">
-                    <input class="form-control" type="text" placeholder="Email" required>
+                    <input class="form-control" type="text" placeholder="Last name" name="last_name" id="last_name" required>
+                  </div>
+                  <div class="mb-3">
+                    <input class="form-control" type="text" placeholder="Email" name="email" id="email" required>
+                  </div>
+                  <div class="mb-3">
+                    <input class="form-control" type="text" placeholder="Username" name="username" id="username" required>
                   </div>
                   <div class="mb-3 password-toggle">
-                    <input class="form-control" type="password" placeholder="Password" required>
+                    <input class="form-control" type="password" placeholder="Password" name="password" id="password" required>
                     <label class="password-toggle-btn" aria-label="Show/hide password">
                       <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
                     </label>
                   </div>
                   <div class="mb-3 password-toggle">
-                    <input class="form-control" type="password" placeholder="Confirm password" required>
+                    <input class="form-control" type="password" placeholder="Confirm password" name="cpassword" id="cpassword" required>
                     <label class="password-toggle-btn" aria-label="Show/hide password">
                       <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
                     </label>
                   </div>
-                  <button class="btn btn-primary d-block w-100" type="submit">Sign up</button>
+                  <button class="btn btn-primary d-block w-100" type="submit" id="submitb">Sign up</button>
                   <p class="fs-sm pt-3 mb-0">Already have an account? <a href='#' class='fw-medium' data-view='#modal-signin-view'>Sign in</a></p>
                 </form>
               </div>
@@ -210,7 +222,7 @@
       <!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page.-->
       <header class="header navbar navbar-expand-lg navbar-dark navbar-floating navbar-sticky" data-scroll-header data-fixed-element>
         <div class="container px-0 px-xl-3">
-          <button class="navbar-toggler ms-n2 me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#primaryMenu"><span class="navbar-toggler-icon"></span></button><a class="navbar-brand flex-shrink-0 order-lg-1 mx-auto ms-lg-0 pe-lg-2 me-lg-4" href="index-2.html"><img class="navbar-floating-logo d-none d-lg-block" src="{% static 'img/logo/logo-light.png' %}" alt="Around" width="153"><img class="navbar-stuck-logo" src="{% static 'img/logo/logo-dark.png' %}" alt="Around" width="153"><img class="d-lg-none" src="{% static 'img/logo/logo-icon.png' %}" alt="Around" width="58"></a>
+          <button class="navbar-toggler ms-n2 me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#primaryMenu"><span class="navbar-toggler-icon"></span></button><a class="navbar-brand flex-shrink-0 order-lg-1 mx-auto ms-lg-0 pe-lg-2 me-lg-4" href="index-2.html">StepSaasAutomation</a>
           <div class="d-flex align-items-center order-lg-3 ms-lg-auto"><a class="nav-link-style fs-sm text-nowrap" href="#modal-signin" data-bs-toggle="modal" data-view="#modal-signin-view"><i class="ai-user fs-xl me-2 align-middle"></i>Sign in</a><a class="btn btn-primary ms-grid-gutter d-none d-lg-inline-block navbar-btn" href="#modal-signin" data-bs-toggle="modal" data-view="#modal-signup-view">Sign up</a><a class="btn btn-primary ms-grid-gutter d-none d-lg-inline-block navbar-stuck-btn" href="#modal-signin" data-bs-toggle="modal" data-view="#modal-signup-view">Sign up</a></div>
           <div class="offcanvas offcanvas-collapse order-lg-2" id="primaryMenu">
             <div class="offcanvas-cap navbar-shadow">
@@ -478,52 +490,36 @@
       </section>
     </main>
     <!-- Footer-->
-    <footer class="footer jarallax bg-dark pt-5 pt-md-6 pt-lg-7" data-jarallax data-speed="0.3">
-      <div class="jarallax-img" style="background-image: url({% static 'img/demo/web-studio/cubes-bg.jpg' %});"></div>
+    <footer class="footer bg-dark pt-5 pt-md-6">
       <div class="container pt-3 pt-md-0">
-        <div class="row pb-2">
-          <form class="col-xl-6 col-lg-7 col-md-7 needs-validation mb-5" novalidate>
-            <h2 class="text-light pb-4">What project are you looking for?</h2>
-            <h3 class="h6 pb-2 text-light">Services</h3>
-            <div class="btn-group-toggle pb-3 mb-3" data-bs-toggle="buttons">
-              <label class="btn btn-outline-light me-2 mb-2 active">
-                <input class="visually-hidden" type="radio" name="services" id="branding" checked>Branding
-              </label>
-              <label class="btn btn-outline-light me-2 mb-2">
-                <input class="visually-hidden" type="radio" name="services" id="ux">UI/UX
-              </label>
-              <label class="btn btn-outline-light me-2 mb-2">
-                <input class="visually-hidden" type="radio" name="services" id="web">Web
-              </label>
-              <label class="btn btn-outline-light mb-2">
-                <input class="visually-hidden" type="radio" name="services" id="mobile">Mobile
-              </label>
+        <div class="row pb-3">
+          <div class="col-md-4 mt-n2 pb-3 pb-md-0 mb-4"><a class="d-block mb-3" href="index-2.html" style="width: 153px;text-decoration: none;font-size: xx-large">StepSassAutomation</a>
+            <p class="fs-sm text-light opacity-60 pb-2 pb-sm-3">Highly customizable and modular official multipurpose Bootstrap template and UI kit.</p><a class="btn-social bs-outline bs-facebook bs-light bs-lg me-2 mb-2" href="#"><i class="ai-facebook"></i></a><a class="btn-social bs-outline bs-twitter bs-light bs-lg me-2 mb-2" href="#"><i class="ai-twitter"></i></a><a class="btn-social bs-outline bs-instagram bs-light bs-lg me-2 mb-2" href="#"><i class="ai-instagram"></i></a><a class="btn-social bs-outline bs-google bs-light bs-lg me-2 mb-2" href="#"><i class="ai-google"></i></a>
+          </div>
+          <div class="col-md-2 col-sm-4 ms-auto pb-1 mb-4">
+            <div class="widget widget-light">
+              <h4 class="widget-title">Company</h4>
+              <ul>
+                <li><a class="widget-link" href="#">About</a></li>
+                <li><a class="widget-link" href="#">Careers</a></li>
+                <li><a class="widget-link" href="#">Press</a></li>
+              </ul>
             </div>
-            <div class="input-group mb-3"><i class="ai-user position-absolute top-50 start-0 translate-middle-y ms-3"></i>
-              <input class="form-control rounded" type="text" placeholder="Name" required>
-            </div>
-            <div class="input-group mb-3"><i class="ai-mail position-absolute top-50 start-0 translate-middle-y ms-3"></i>
-              <input class="form-control rounded" type="email" placeholder="Email" required>
-            </div>
-            <div class="mb-3 pb-1">
-              <textarea class="form-control" rows="4" placeholder="Project description" required></textarea>
-            </div>
-            <div class="row pt-2">
-              <div class="col-lg-6 col-md-8">
-                <button class="btn btn-primary d-block w-100" type="submit">Send Request</button>
-              </div>
-            </div>
-          </form>
-          <div class="col-xl-3 col-lg-4 offset-xl-3 offset-lg-1 col-md-5 mb-5">
-            <h2 class="text-light pb-2">Contacts</h2>
-            <ul class="list-unstyled fs-sm mb-4 pb-2">
-              <li><a class="nav-link-style nav-link-light" href="mailto:contact@example.com">contact@example.com</a></li>
-              <li><a class="nav-link-style nav-link-light" href="tel:+15262200459">+ 1 526 220 0459</a></li>
-            </ul>
-            <h3 class="h6 pb-2 text-light">Or connect with us on:</h3><a class="btn-social bs-facebook bs-light bs-lg me-2 mb-2" href="#"><i class="ai-facebook"></i></a><a class="btn-social bs-twitter bs-light bs-lg me-2 mb-2" href="#"><i class="ai-twitter"></i></a><a class="btn-social bs-instagram bs-light bs-lg me-2 mb-2" href="#"><i class="ai-instagram"></i></a><a class="btn-social bs-dribbble bs-light bs-lg me-2 mb-2" href="#"><i class="ai-dribbble"></i></a><a class="btn-social bs-behance bs-light bs-lg me-2 mb-2" href="#"><i class="ai-behance"></i></a>
           </div>
         </div>
-        <p class="fs-sm text-center pb-4 mt-n1 mb-0"><span class="text-light opacity-50 me-1">© All rights reserved. Made by</span><a class="nav-link-style nav-link-light" href="https://createx.studio/" target="_blank" rel="noopener">Createx Studio</a></p>
+        <hr class="my-0 border-light">
+        <div class="row align-items-center mt-3 py-4">
+          <div class="col-md-6 order-md-2 text-md-end mb-3">
+            <ul class="list-inline fs-sm mb-0">
+              <li class="list-inline-item"><a class="nav-link-style nav-link-light" href="#">Support</a></li>
+              <li class="list-inline-item"><a class="nav-link-style nav-link-light" href="#">Contacts</a></li>
+              <li class="list-inline-item"><a class="nav-link-style nav-link-light" href="#">Terms &amp; Conditions</a></li>
+            </ul>
+          </div>
+          <div class="col-md-6 order-md-1 mb-3">
+            <p class="fs-sm mb-0"><span class="text-light opacity-50 me-1">© All rights reserved. Made by</span><a class="nav-link-style nav-link-light" href="https://createx.studio/" target="_blank" rel="noopener">Createx Studio</a></p>
+          </div>
+        </div>
       </div>
     </footer>
     <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll data-fixed-element><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon ai-arrow-up">   </i></a>

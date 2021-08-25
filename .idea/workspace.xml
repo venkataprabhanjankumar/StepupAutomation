@@ -3,12 +3,38 @@
   <component name="ChangeListManager">
     <list default="true" id="5a83a35e-9a56-4255-8626-53bb391928a5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StepAutomation/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/StepAutomation/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stepautomationapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/stepautomationapp/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stepautomationapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/stepautomationapp/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/account-profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/account-profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/demo-booking-directory.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/demo-booking-directory.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/demo-business-consulting.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/demo-business-consulting.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/demo-coworking-space.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/demo-coworking-space.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/demo-creative-agency.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/demo-creative-agency.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/demo-event-landing.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/demo-event-landing.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/demo-food-blog.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/demo-food-blog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/demo-marketing-seo.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/demo-marketing-seo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/demo-mobile-app.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/demo-mobile-app.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/demo-personal-portfolio.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/demo-personal-portfolio.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/demo-product-gadget.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/demo-product-gadget.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/demo-product-software.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/demo-product-software.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/demo-shop-homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/demo-shop-homepage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/demo-web-studio.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/demo-web-studio.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index-2.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index-2.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -25,7 +51,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/static/img/demo/creative-agency/parallax" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.templateLanguages.PyTemplateLanguageModulesConfigurable" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -73,7 +99,18 @@
       <workItem from="1629795278367" duration="674000" />
       <workItem from="1629795992691" duration="487000" />
       <workItem from="1629797384918" duration="5251000" />
-      <workItem from="1629802827952" duration="3448000" />
+      <workItem from="1629802827952" duration="10171000" />
+      <workItem from="1629818984330" duration="1985000" />
+      <workItem from="1629821010111" duration="935000" />
+      <workItem from="1629821978530" duration="214000" />
+      <workItem from="1629860606234" duration="3062000" />
+      <workItem from="1629865588313" duration="830000" />
+      <workItem from="1629870482946" duration="1888000" />
+      <workItem from="1629872403220" duration="1339000" />
+      <workItem from="1629873807558" duration="135000" />
+      <workItem from="1629873964564" duration="308000" />
+      <workItem from="1629877027317" duration="10657000" />
+      <workItem from="1629888832036" duration="7577000" />
     </task>
     <servers />
   </component>

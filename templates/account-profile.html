@@ -4,6 +4,7 @@
 <!-- Mirrored from around.createx.studio/account-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 05 Apr 2021 17:19:41 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
+    {% load static %}
     <meta charset="utf-8">
     <title>Around | Account - Profile</title>
     <!-- SEO Meta Tags-->
@@ -12,12 +13,12 @@
     <meta name="author" content="Createx Studio">
     <!-- Viewport-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Favicon and Touch Icons-->
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="manifest" href="site.webmanifest">
-    <link rel="mask-icon" color="#5bbad5" href="safari-pinned-tab.svg">
+     <!-- Favicon and Touch Icons-->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/account/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/account/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/account/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'site.webmanifest' %}">
+    <link rel="mask-icon" color="#5bbad5" href="{% static 'safari-pinned-tab.svg' %}">
     <meta name="msapplication-TileColor" content="#766df4">
     <meta name="theme-color" content="#ffffff">
     <!-- Page loading styles-->
@@ -87,7 +88,7 @@
           transform: rotate(360deg);
         }
       }
-      
+
     </style>
     <!-- Page loading scripts-->
     <script>
@@ -100,12 +101,13 @@
           }, 2000);
         };
       })();
-      
+
     </script>
     <!-- Vendor Styles-->
-    <link rel="stylesheet" media="screen" href="vendor/simplebar/dist/simplebar.min.css"/>
+    <link rel="stylesheet" media="screen" href="{% static 'vendor/simplebar/dist/simplebar.min.css' %}"/>
+    <link rel="stylesheet" media="screen" href="{% static 'vendor/tiny-slider/dist/tiny-slider.css' %}"/>
     <!-- Main Theme Styles + Bootstrap-->
-    <link rel="stylesheet" media="screen" href="css/theme.min.css">
+    <link rel="stylesheet" media="screen" href="{% static 'css/theme.min.css' %}">
     <!-- Google Tag Manager-->
     <script>
       (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -117,6 +119,7 @@
   </head>
   <!-- Body-->
   <body style="background-color:#f7f7fc;">
+  {% if logged %}
     <!-- Google Tag Manager (noscript)-->
     <noscript>
       <iframe src="http://www.googletagmanager.com/ns.html?id=GTM-WKV3GT5" height="0" width="0" style="display: none; visibility: hidden;"></iframe>
@@ -132,9 +135,9 @@
       <!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page.-->
       <header class="header navbar navbar-expand-lg navbar-dark navbar-floating navbar-sticky" data-scroll-header data-fixed-element>
         <div class="container px-0 px-xl-3">
-          <button class="navbar-toggler ms-n2 me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#primaryMenu"><span class="navbar-toggler-icon"></span></button><a class="navbar-brand flex-shrink-0 order-lg-1 mx-auto ms-lg-0 pe-lg-2 me-lg-4" href="index-2.html"><img class="navbar-floating-logo d-none d-lg-block" src="img/logo/logo-light.png" alt="Around" width="153"><img class="navbar-stuck-logo" src="img/logo/logo-dark.png" alt="Around" width="153"><img class="d-lg-none" src="img/logo/logo-icon.png" alt="Around" width="58"></a>
+          <button class="navbar-toggler ms-n2 me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#primaryMenu"><span class="navbar-toggler-icon"></span></button><a class="navbar-brand flex-shrink-0 order-lg-1 mx-auto ms-lg-0 pe-lg-2 me-lg-4" href="index-2.html">StepSaasAutomation</a>
           <div class="d-flex align-items-center order-lg-3 ms-lg-auto">
-            <div class="navbar-tool dropdown"><a class="navbar-tool-icon-box" href="account-profile.html"><img class="navbar-tool-icon-box-img" src="img/dashboard/avatar/main-sm.jpg" alt="Avatar"></a><a class="navbar-tool-label dropdown-toggle" href="account-profile.html"><small>Hello,</small>Amanda</a>
+            <div class="navbar-tool dropdown"><a class="navbar-tool-icon-box" href="account-profile.html"><img class="navbar-tool-icon-box-img" src="{% static 'img/dashboard/avatar/main-sm.jpg' %}" alt="Avatar"></a><a class="navbar-tool-label dropdown-toggle" href="account-profile.html"><small>Hello,</small>Amanda</a>
               <ul class="dropdown-menu dropdown-menu-end" style="width: 15rem;">
                 <li><a class="dropdown-item d-flex align-items-center" href="dashboard-orders.html"><i class="ai-shopping-bag fs-base opacity-60 me-2"></i>Orders<span class="nav-indicator"></span><span class="ms-auto fs-xs text-muted">2</span></a></li>
                 <li class="dropdown-divider"></li>
@@ -161,7 +164,7 @@
               <!-- Menu-->
               <ul class="navbar-nav">
                 <li class="nav-item dropdown dropdown-mega"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Demos</a>
-                  <div class="dropdown-menu"><a class="dropdown-column dropdown-column-img bg-secondary" href="index-2.html" style="background-image: url(img/demo/menu-banner.jpg);"></a>
+                  <div class="dropdown-menu"><a class="dropdown-column dropdown-column-img bg-secondary" href="index-2.html" style="background-image: url({% static 'img/demo/menu-banner.jpg' %});"></a>
                     <div class="dropdown-column"><a class="dropdown-item" href="index-2.html">Web Template Presentation</a><a class="dropdown-item" href="demo-business-consulting.html">Business Consulting</a><a class="dropdown-item" href="demo-shop-homepage.html">Shop Homepage</a><a class="dropdown-item" href="demo-booking-directory.html">Booking / Directory</a><a class="dropdown-item" href="demo-creative-agency.html">Creative Agency</a><a class="dropdown-item" href="demo-web-studio.html">Web Studio</a><a class="dropdown-item" href="demo-product-software.html">Product Landing - Software</a></div>
                     <div class="dropdown-column"><a class="dropdown-item" href="demo-product-gadget.html">Product Landing - Gadget</a><a class="dropdown-item" href="demo-mobile-app.html">Mobile App Showcase</a><a class="dropdown-item" href="demo-coworking-space.html">Coworking Space</a><a class="dropdown-item" href="demo-event-landing.html">Event Landing</a><a class="dropdown-item" href="demo-marketing-seo.html">Digital Marketing &amp; SEO</a><a class="dropdown-item" href="demo-food-blog.html">Food Blog</a><a class="dropdown-item" href="demo-personal-portfolio.html">Personal Portfolio</a></div>
                   </div>
@@ -282,7 +285,7 @@
           <!-- Sidebar-->
           <div class="col-lg-4 mb-4 mb-lg-0">
             <div class="bg-light rounded-3 shadow-lg">
-              <div class="px-4 py-4 mb-1 text-center"><img class="d-block rounded-circle mx-auto my-2" src="img/dashboard/avatar/main.jpg" at="Amanda Wilson" width="110">
+              <div class="px-4 py-4 mb-1 text-center"><img class="d-block rounded-circle mx-auto my-2" src="{% static 'img/dashboard/avatar/main.jpg' %}" at="Amanda Wilson" width="110">
                 <h6 class="mb-0 pt-1">Amanda Wilson</h6><span class="text-muted fs-sm">@amanda_w</span>
               </div>
               <div class="d-lg-none px-4 pb-4 text-center"><a class="btn btn-primary px-5 mb-2" href="#account-menu" data-bs-toggle="collapse"><i class="ai-menu me-2"></i>Account menu</a></div>
@@ -310,7 +313,7 @@
                 </div>
                 <!-- Content-->
                 <div class="bg-secondary rounded-3 p-4 mb-4">
-                  <div class="d-block d-sm-flex align-items-center"><img class="d-block rounded-circle mx-sm-0 mx-auto mb-3 mb-sm-0" src="img/dashboard/avatar/main.jpg" alt="Amanda Wilson" width="110">
+                  <div class="d-block d-sm-flex align-items-center"><img class="d-block rounded-circle mx-sm-0 mx-auto mb-3 mb-sm-0" src="{% static 'img/dashboard/avatar/main.jpg' %}" alt="Amanda Wilson" width="110">
                     <div class="ps-sm-3 text-center text-sm-start">
                       <button class="btn btn-light shadow btn-sm mb-2" type="button"><i class="ai-refresh-cw me-2"></i>Change avatar</button>
                       <div class="p mb-0 fs-ms text-muted">Upload JPG, GIF or PNG image. 300 x 300 required.</div>
@@ -408,12 +411,13 @@
     </footer>
     <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll data-fixed-element><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon ai-arrow-up">   </i></a>
     <!-- Vendor scrits: js libraries and plugins-->
-    <script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="vendor/simplebar/dist/simplebar.min.js"></script>
-    <script src="vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+    <script src="{% static 'vendor/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'vendor/simplebar/dist/simplebar.min.js' %}"></script>
+    <script src="{% static 'vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js' %}"></script>
     <!-- Main theme script-->
-    <script src="js/theme.min.js"></script>
+    <script src="{% static 'js/theme.min.js' %}"></script>
   </body>
+  {% endif %}
 
 <!-- Mirrored from around.createx.studio/account-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 05 Apr 2021 17:19:41 GMT -->
 </html>

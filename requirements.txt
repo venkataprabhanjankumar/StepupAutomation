@@ -5,3 +5,4 @@ raven==6.10.0
 psycopg2==2.9.1
 python-decouple==3.4
 django-utils-six==2.0
+djangorestframework==3.12.4
