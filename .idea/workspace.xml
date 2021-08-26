@@ -3,26 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="5a83a35e-9a56-4255-8626-53bb391928a5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StepAutomation/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/StepAutomation/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stepautomationapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/stepautomationapp/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stepautomationapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/stepautomationapp/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/account-profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/account-profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/demo-booking-directory.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/demo-booking-directory.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/demo-business-consulting.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/demo-business-consulting.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/demo-coworking-space.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/demo-coworking-space.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/demo-creative-agency.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/demo-creative-agency.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/demo-event-landing.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/demo-event-landing.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/demo-food-blog.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/demo-food-blog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/demo-marketing-seo.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/demo-marketing-seo.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/demo-mobile-app.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/demo-mobile-app.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/demo-personal-portfolio.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/demo-personal-portfolio.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/demo-product-gadget.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/demo-product-gadget.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/demo-product-software.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/demo-product-software.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/demo-shop-homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/demo-shop-homepage.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/demo-web-studio.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/demo-web-studio.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index-2.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index-2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +32,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/static/img/demo/creative-agency/parallax" />
+    <property name="last_opened_file_path" value="E:/WebDevelopment/AngularJs/Simple Demos" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -110,7 +94,9 @@
       <workItem from="1629873807558" duration="135000" />
       <workItem from="1629873964564" duration="308000" />
       <workItem from="1629877027317" duration="10657000" />
-      <workItem from="1629888832036" duration="7577000" />
+      <workItem from="1629888832036" duration="7848000" />
+      <workItem from="1629899803923" duration="37000" />
+      <workItem from="1629956930704" duration="4549000" />
     </task>
     <servers />
   </component>

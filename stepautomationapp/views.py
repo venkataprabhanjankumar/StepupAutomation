@@ -10,17 +10,17 @@ from rest_framework.authtoken.models import Token
 def index(request):
     return render(
         request,
-        'index.html',
+        'demo-web-studio.html',
         {}
     )
 
 
-def handle_redirect(request, template):
+'''def handle_redirect(request, template):
     return render(
         request,
         template + '.html',
         {}
-    )
+    )'''
 
 
 def signin(request):
@@ -79,14 +79,13 @@ def signup(request):
                             content_type='application/json')
 
 
-def dashboard(request, token, template):
-    print(token)
+def dashboard(request, token):
     try:
         user = Token.objects.get(key=token)
         print(user.user)
         return render(
             request,
-            template + '.html',
+            'account-profile.html',
             {
                 'logged': True
             }
@@ -94,6 +93,23 @@ def dashboard(request, token, template):
     except Token.DoesNotExist:
         return render(
             request,
-            'index.html',
+            'demo-web-studio.html',
+            {}
+        )
+
+
+def logout(request, token):
+    try:
+        token = Token.objects.get(key=token)
+        token.delete()
+        return render(
+            request,
+            'demo-web-studio.html',
+            {}
+        )
+    except Token.DoesNotExist:
+        return render(
+            request,
+            'demo-web-studio.html',
             {}
         )
