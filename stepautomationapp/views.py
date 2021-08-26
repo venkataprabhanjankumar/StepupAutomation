@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.db.models import Q
-from django.http import HttpResponse,HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 import json
 from django.contrib.auth.hashers import check_password
 from rest_framework.authtoken.models import Token
@@ -96,6 +96,22 @@ def dashboard(request, token):
             'demo-web-studio.html',
             {}
         )
+
+
+def aboutus(request):
+    return render(
+        request,
+        'about.html',
+        {}
+    )
+
+
+def contactus(request):
+    return render(
+        request,
+        'contacts-v3.html',
+        {}
+    )
 
 
 def logout(request, token):

@@ -21,6 +21,8 @@
     <link rel="mask-icon" color="#5bbad5" href="{% static 'safari-pinned-tab.svg' %}">
     <meta name="msapplication-TileColor" content="#766df4">
     <meta name="theme-color" content="#ffffff">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="{% static 'js/auth.js' %}"></script>
     <!-- Page loading styles-->
     <style>
       .page-loading {
@@ -141,16 +143,18 @@
               </div>
               <div class="modal-body px-4">
                 <p class="fs-ms text-muted">Sign in to your account using email and password provided during registration.</p>
-                <form class="needs-validation" novalidate>
+                <p id="login-msg"></p>
+                <form class="needs-validation" novalidate action="signin" method="post">
+                  {% csrf_token %}
                   <div class="mb-3">
                     <div class="input-group"><i class="ai-mail position-absolute top-50 start-0 translate-middle-y ms-3"></i>
-                      <input class="form-control rounded" type="email" placeholder="Email" required>
+                      <input class="form-control rounded" type="text" placeholder="Email or Username" name="email" id="emaill" autocomplete="false" required>
                     </div>
                   </div>
                   <div class="mb-3">
                     <div class="input-group"><i class="ai-lock position-absolute top-50 start-0 translate-middle-y ms-3"></i>
                       <div class="password-toggle w-100">
-                        <input class="form-control" type="password" placeholder="Password" required>
+                        <input class="form-control" type="password" placeholder="Password" name="password" id="passwordl" required>
                         <label class="password-toggle-btn" aria-label="Show/hide password">
                           <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
                         </label>
@@ -159,11 +163,11 @@
                   </div>
                   <div class="d-flex justify-content-between align-items-center mb-3 mb-3">
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="keep-signed">
+                      <input class="form-check-input" type="checkbox" value="keepme" id="keep-signed" name="keepsignin">
                       <label class="form-check-label fs-sm" for="keep-signed">Keep me signed in</label>
                     </div><a class="nav-link-style fs-ms" href="password-recovery.html">Forgot password?</a>
                   </div>
-                  <button class="btn btn-primary d-block w-100" type="submit">Sign in</button>
+                  <button class="btn btn-primary d-block w-100" type="submit" id="submitl">Sign in</button>
                   <p class="fs-sm pt-3 mb-0">Don't have an account? <a href='#' class='fw-medium' data-view='#modal-signup-view'>Sign up</a></p>
                 </form>
               </div>
@@ -175,33 +179,37 @@
               </div>
               <div class="modal-body px-4">
                 <p class="fs-ms text-muted">Registration takes less than a minute but gives you full control over your orders.</p>
-                <form class="needs-validation" novalidate>
+                  <p id="register-message"></p>
+                <form class="needs-validation" novalidate method="post">
+                  {% csrf_token %}
                   <div class="mb-3">
-                    <input class="form-control" type="text" placeholder="Full name" required>
+                    <input class="form-control" type="text" placeholder="Fist Name" name="first_name" id="first_name" required>
                   </div>
                   <div class="mb-3">
-                    <input class="form-control" type="text" placeholder="Email" required>
+                    <input class="form-control" type="text" placeholder="Last name" name="last_name" id="last_name" required>
+                  </div>
+                  <div class="mb-3">
+                    <input class="form-control" type="text" placeholder="Email" name="email" id="email" required>
+                  </div>
+                  <div class="mb-3">
+                    <input class="form-control" type="text" placeholder="Username" name="username" id="username" required>
                   </div>
                   <div class="mb-3 password-toggle">
-                    <input class="form-control" type="password" placeholder="Password" required>
+                    <input class="form-control" type="password" placeholder="Password" name="password" id="password" required>
                     <label class="password-toggle-btn" aria-label="Show/hide password">
                       <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
                     </label>
                   </div>
                   <div class="mb-3 password-toggle">
-                    <input class="form-control" type="password" placeholder="Confirm password" required>
+                    <input class="form-control" type="password" placeholder="Confirm password" name="cpassword" id="cpassword" required>
                     <label class="password-toggle-btn" aria-label="Show/hide password">
                       <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
                     </label>
                   </div>
-                  <button class="btn btn-primary d-block w-100" type="submit">Sign up</button>
+                  <button class="btn btn-primary d-block w-100" type="submit" id="submitb">Sign up</button>
                   <p class="fs-sm pt-3 mb-0">Already have an account? <a href='#' class='fw-medium' data-view='#modal-signin-view'>Sign in</a></p>
                 </form>
               </div>
-            </div>
-            <div class="modal-body text-center px-4 pt-2 pb-4">
-              <hr class="my-0">
-              <p class="fs-sm fw-medium text-heading pt-4">Or sign in with</p><a class="btn-social bs-facebook bs-lg mx-1 mb-2" href="#"><i class="ai-facebook"></i></a><a class="btn-social bs-twitter bs-lg mx-1 mb-2" href="#"><i class="ai-twitter"></i></a><a class="btn-social bs-instagram bs-lg mx-1 mb-2" href="#"><i class="ai-instagram"></i></a><a class="btn-social bs-google bs-lg mx-1 mb-2" href="#"><i class="ai-google"></i></a>
             </div>
           </div>
         </div>
