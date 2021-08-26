@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.db.models import Q
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 import json
 from django.contrib.auth.hashers import check_password
 from rest_framework.authtoken.models import Token
@@ -102,11 +102,7 @@ def logout(request, token):
     try:
         token = Token.objects.get(key=token)
         token.delete()
-        return render(
-            request,
-            'demo-web-studio.html',
-            {}
-        )
+        return HttpResponseRedirect('/')
     except Token.DoesNotExist:
         return render(
             request,
