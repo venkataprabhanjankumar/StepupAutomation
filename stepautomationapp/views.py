@@ -105,7 +105,7 @@ def dashboard(request, token):
                     'zipcode': userdata.zipcode,
                     'country': userdata.country,
                     'city': userdata.city,
-                    'profilepic': 'http://127.0.0.1:8000/' + str(userdata.profilepic),
+                    'profilepic': 'https://stepsaasautomation.herokuapp.com/' + str(userdata.profilepic),
                     'countries': countries
                 }
             )
@@ -123,7 +123,7 @@ def dashboard(request, token):
                     'zipcode': '',
                     'country': False,
                     'city': False,
-                    'profilepic': 'http://127.0.0.1:8000/media/profilepic.png',
+                    'profilepic': 'https://stepsaasautomation.herokuapp.com/media/profilepic.png',
                     'countries': countries
                 }
             )
