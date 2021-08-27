@@ -2,7 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5a83a35e-9a56-4255-8626-53bb391928a5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/static/js/citystate.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/updateprofile.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stepautomationapp/static/js/citystate.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stepautomationapp/static/js/updateprofile.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StepAutomation/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/StepAutomation/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stepautomationapp/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/stepautomationapp/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stepautomationapp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/stepautomationapp/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stepautomationapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/stepautomationapp/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stepautomationapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/stepautomationapp/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/account-profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/account-profile.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -13,6 +22,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Python Script" />
         <option value="JavaScript File" />
       </list>
     </option>
@@ -93,7 +103,12 @@
       <workItem from="1629877027317" duration="10657000" />
       <workItem from="1629888832036" duration="7848000" />
       <workItem from="1629899803923" duration="37000" />
-      <workItem from="1629956930704" duration="7899000" />
+      <workItem from="1629956930704" duration="8822000" />
+      <workItem from="1630052300715" duration="4248000" />
+      <workItem from="1630057296594" duration="10895000" />
+      <workItem from="1630068314331" duration="746000" />
+      <workItem from="1630069556456" duration="5819000" />
+      <workItem from="1630079566871" duration="3532000" />
     </task>
     <servers />
   </component>

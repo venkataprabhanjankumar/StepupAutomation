@@ -5,6 +5,10 @@ from django.http import HttpResponse, HttpResponseRedirect
 import json
 from django.contrib.auth.hashers import check_password
 from rest_framework.authtoken.models import Token
+from .models import UserData
+from .models import Country
+from rest_framework import permissions
+from rest_framework.decorators import permission_classes
 
 
 def index(request):
@@ -82,14 +86,104 @@ def signup(request):
 def dashboard(request, token):
     try:
         user = Token.objects.get(key=token)
-        print(user.user)
+        userdetails = User.objects.get(username=user.user)
+        countries = Country.objects.all()
+        try:
+            userdata = UserData.objects.get(userrelation=userdetails)
+            print(userdata.profilepic)
+            print(userdata.country)
+            return render(
+                request,
+                'account-profile.html',
+                {
+                    'logged': True,
+                    'username': userdetails.username,
+                    'email': userdetails.email,
+                    'first_name': userdetails.first_name,
+                    'last_name': userdetails.last_name,
+                    'address': userdata.address,
+                    'zipcode': userdata.zipcode,
+                    'country': userdata.country,
+                    'city': userdata.city,
+                    'profilepic': 'http://127.0.0.1:8000/' + str(userdata.profilepic),
+                    'countries': countries
+                }
+            )
+        except UserData.DoesNotExist:
+            return render(
+                request,
+                'account-profile.html',
+                {
+                    'logged': True,
+                    'username': userdetails.username,
+                    'email': userdetails.email,
+                    'first_name': userdetails.first_name,
+                    'last_name': userdetails.last_name,
+                    'address': '',
+                    'zipcode': '',
+                    'country': False,
+                    'city': False,
+                    'profilepic': 'http://127.0.0.1:8000/media/profilepic.png',
+                    'countries': countries
+                }
+            )
+    except Token.DoesNotExist:
         return render(
             request,
-            'account-profile.html',
-            {
-                'logged': True
-            }
+            'demo-web-studio.html',
+            {}
         )
+
+
+@permission_classes([permissions.AllowAny])
+def getCities(request):
+    sname = request.GET['countrydata']
+    results = []
+    cities = []
+    answer = str(sname)
+    selected_country = Country.objects.get(country=answer)
+    cities = selected_country.city_set.all()
+    for city in cities:
+        results.append({'name': city.city})
+    return HttpResponse(json.dumps(results), content_type='application/json')
+
+
+def updateProfile(request, token):
+    try:
+        userdeatils = Token.objects.get(key=token)
+        user = User.objects.get(username=userdeatils.user)
+        print(request.body)
+        data = json.loads(request.body)
+        username = data.get('username')
+        email = data.get('email')
+        first_name = data.get('firstName')
+        last_name = data.get('lastName')
+        print(first_name, last_name, username, email)
+        print(data.get('city'), data.get('country'))
+        user.first_name = first_name
+        user.last_name = last_name
+        user.username = username
+        user.email = email
+        user.save()
+        try:
+            userdetails = UserData.objects.get(userrelation=user.id)
+            userdetails.country = data.get('country')
+            userdetails.city = data.get('city')
+            userdetails.address = data.get('address')
+            userdetails.zipcode = data.get('zipcode')
+            userdetails.save()
+        except UserData.DoesNotExist:
+            userdata = UserData.objects.create(
+                userrelation=user,
+                country=data.get('country'),
+                city=data.get('city'),
+                address=data.get('address'),
+                zipcode=data.get('address')
+            )
+            userdata.save()
+
+        return HttpResponse(json.dumps({'status_msg': 'Ok', 'msg': 'Successfully Updated'}),
+                            content_type='application/json')
     except Token.DoesNotExist:
         return render(
             request,
