@@ -23,7 +23,7 @@ $(document).ready(function (){
        const username = $("#account-username").val();
        const countryoption = $("#account-country").find("option:selected");
        const country = countryoption.val();
-       const cityoption = $("#account-country").find("option:selected");
+       const cityoption = $("#account-city").find("option:selected");
        const city = cityoption.val();
        console.log(country);
        console.log(city);
@@ -53,6 +53,7 @@ $(document).ready(function (){
                     }
                 }
             )
+           $('#loaderprofile').removeClass('hidden')
             console.log(JSON.stringify(data))
             $.ajax({
                 type: 'PUT',
@@ -60,10 +61,15 @@ $(document).ready(function (){
                 contentType: 'application/json',
                 data: JSON.stringify(data), // access in body
             }).done(function (result) {
+                $('#loaderprofile').addClass('hidden')
                 if(result.status_msg === 'Ok'){
                     document.getElementById("account-display-msg").innerText = result.msg;
                     document.getElementById("account-display-msg").style.color = "green"
                     window.location.href='/'+authToken+'/account-profile';
+                }
+                else {
+                    document.getElementById("account-display-msg").innerText = result.msg;
+                    document.getElementById("account-display-msg").style.color = "red"
                 }
             })
            }

@@ -13,7 +13,6 @@ function getCookie(name) {
     }
     return cookieValue;
 }
-console.log(window.location.origin)
 $(document).ready(function (){
     $("#submitb").click(function (event){
         event.preventDefault()
@@ -37,9 +36,12 @@ $(document).ready(function (){
             }
             $.ajaxSetup(
             {
-                headers : {"X-CSRFToken":getCookie('csrftoken')}
+                headers : {"X-CSRFToken":getCookie('csrftoken')},
             })
+            console.log("Hello")
+            $('#loader2').removeClass('hidden')
             $.post('/signup',data,function (result){
+                $('#loader2').addClass('hidden')
                 if(result.status_msg==='Ok'){
                     document.getElementById("password").value="";
                     document.getElementById("cpassword").value="";
@@ -78,7 +80,9 @@ $(document).ready(function (){
                 headers : {"X-CSRFToken":getCookie('csrftoken')}
             }
         )
+        $('#loader1').removeClass('hidden')
         $.post('/signin',logindata,function (result){
+            $('#loader1').addClass('hidden')
             if(result.status_msg==='NotOk'){
                 document.getElementById("passwordl").value="";
                 document.getElementById("login-msg").innerText=result.msg;

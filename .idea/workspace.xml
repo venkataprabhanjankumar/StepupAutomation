@@ -2,7 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5a83a35e-9a56-4255-8626-53bb391928a5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/stepautomationapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/stepautomationapp/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/spinnerstyle.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stepautomationapp/static/css/spinnerstyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/updateprofile.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/updateprofile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stepautomationapp/static/js/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/stepautomationapp/static/js/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stepautomationapp/static/js/updateprofile.js" beforeDir="false" afterPath="$PROJECT_DIR$/stepautomationapp/static/js/updateprofile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/account-profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/account-profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/demo-web-studio.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/demo-web-studio.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,6 +22,7 @@
       <list>
         <option value="Python Script" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -30,6 +39,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="E:/WebDevelopment/AngularJs/Simple Demos" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -98,7 +108,10 @@
       <workItem from="1630057296594" duration="10895000" />
       <workItem from="1630068314331" duration="746000" />
       <workItem from="1630069556456" duration="5819000" />
-      <workItem from="1630079566871" duration="4411000" />
+      <workItem from="1630079566871" duration="4589000" />
+      <workItem from="1630119736966" duration="258000" />
+      <workItem from="1630162075423" duration="1260000" />
+      <workItem from="1630163373790" duration="4221000" />
     </task>
     <servers />
   </component>

@@ -53,6 +53,8 @@ $(document).ready(function (){
                     }
                 }
             )
+           $('#loaderprofile').removeClass('hidden')
+           $('#loaderprofile').css({"width": "100%","height":"100%"});
             console.log(JSON.stringify(data))
             $.ajax({
                 type: 'PUT',
@@ -60,10 +62,16 @@ $(document).ready(function (){
                 contentType: 'application/json',
                 data: JSON.stringify(data), // access in body
             }).done(function (result) {
+                $('#loaderprofile').addClass('hidden')
+                $('#loaderprofile').css({"width": "0%","height":"0%"});
                 if(result.status_msg === 'Ok'){
                     document.getElementById("account-display-msg").innerText = result.msg;
                     document.getElementById("account-display-msg").style.color = "green"
                     window.location.href='/'+authToken+'/account-profile';
+                }
+                else {
+                    document.getElementById("account-display-msg").innerText = result.msg;
+                    document.getElementById("account-display-msg").style.color = "red"
                 }
             })
            }
