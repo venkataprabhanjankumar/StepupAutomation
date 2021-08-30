@@ -7,12 +7,12 @@ urlpatterns = [
     path('signin', views.signin, name='signin'),
     path('signup', views.signup, name='signup'),
     path('', views.index, name='index'),
-    path('<token>/account-profile', views.dashboard, name='dashboard'),
-    path('<token>/logout', views.logout, name='logout'),
+    path('account-profile', views.dashboard, name='dashboard'),
+    path('logout', views.user_logout, name='logout'),
     path('about/', views.aboutus, name='aboutus'),
     path('contacts-v3/', views.aboutus, name='contactus'),
-    path('<token>/updateprofile', views.updateProfile, name='update-profile'),
-    path('getcity',views.getCities)
+    path('updateprofile', views.updateProfile, name='update-profile'),
+    path('getcity', views.getCities)
 ]
 
 if settings.DEBUG:

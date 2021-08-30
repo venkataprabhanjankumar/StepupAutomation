@@ -90,7 +90,7 @@ $(document).ready(function (){
             }
             if(result.status_msg==='Ok'){
                 document.getElementById("passwordl").value="";
-                window.location.href=window.location.origin+"/"+result.authKey+"/account-profile";
+                window.location.href=window.location.origin+"/account-profile";
             }
         });
     });
