@@ -184,10 +184,23 @@ def updateProfile(request):
 @login_required(login_url='/login')
 def updateProfilePic(request):
     user = User.objects.get(username=request.user)
-    userdetails = UserData.objects.get(userrelation=user.id)
-    userdetails.profilepic = request.FILES.get('profilepic')
-    userdetails.save()
-    return redirect('/account-profile')
+    try:
+
+        userdetails = UserData.objects.get(userrelation=user.id)
+        userdetails.profilepic = request.FILES.get('profilepic')
+        userdetails.save()
+        return redirect('/account-profile')
+    except UserData.DoesNotExist:
+        userdetails = UserData.objects.create(
+            userrelation=user,
+            profilepic=request.FILES.get('profilepic'),
+            address='',
+            country='',
+            city='',
+            zipcode=''
+        )
+        userdetails.save()
+        return redirect('/account-profile')
 
 
 def aboutus(request):
