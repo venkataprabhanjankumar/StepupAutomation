@@ -7,7 +7,7 @@ class UserData(models.Model):
     userrelation = models.ForeignKey(User, on_delete=models.CASCADE)
     country = models.CharField(max_length=225, null=True, blank=True)
     city = models.CharField(max_length=225, null=True, blank=True)
-    profilepic = models.ImageField(upload_to='media/', default='media/profilepic.png')
+    profilepic = models.ImageField(upload_to='media', default='media/profilepic.png')
     address = models.TextField(null=True, blank=True)
     zipcode = models.CharField(max_length=225, null=True, blank=True)
 

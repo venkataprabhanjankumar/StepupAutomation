@@ -5,12 +5,13 @@ from django.http import HttpResponse, HttpResponseRedirect
 import json
 from django.contrib.auth.hashers import check_password
 from rest_framework.authtoken.models import Token
-from .models import UserData
-from .models import Country
 from rest_framework import permissions
 from rest_framework.decorators import permission_classes
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
+
+from .models import UserData
+from .models import Country
 
 
 def index(request):
@@ -30,6 +31,14 @@ def index(request):
         template + '.html',
         {}
     )'''
+
+
+@login_required(login_url='/login')
+def delete_account(request):
+    user = User.objects.get(username=request.user)
+    logout(request)
+    user.delete()
+    return redirect('/')
 
 
 def signin(request):
@@ -98,7 +107,7 @@ def dashboard(request):
                 'zipcode': userdata.zipcode,
                 'country': userdata.country,
                 'city': userdata.city,
-                'profilepic': 'https://stepsaasautomation.herokuapp.com/' + str(userdata.profilepic),
+                'profilepic': 'https://stepsaasautomation.herokuapp.com/media/' + str(userdata.profilepic),
                 'countries': countries,
             }
         )
@@ -116,7 +125,7 @@ def dashboard(request):
                 'zipcode': '',
                 'country': False,
                 'city': False,
-                'profilepic': 'https://stepsaasautomation.herokuapp.com/media/profilepic.png',
+                'profilepic': 'https://stepsaasautomation.herokuapp.com/media/media/profilepic.png',
                 'countries': countries
             }
         )
@@ -170,6 +179,15 @@ def updateProfile(request):
             'demo-web-studio.html',
             {}
         )
+
+
+@login_required(login_url='/login')
+def updateProfilePic(request):
+    user = User.objects.get(username=request.user)
+    userdetails = UserData.objects.get(userrelation=user.id)
+    userdetails.profilepic = request.FILES.get('profilepic')
+    userdetails.save()
+    return redirect('/account-profile')
 
 
 def aboutus(request):

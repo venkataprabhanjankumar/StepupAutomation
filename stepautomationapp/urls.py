@@ -12,7 +12,9 @@ urlpatterns = [
     path('about/', views.aboutus, name='aboutus'),
     path('contacts-v3/', views.aboutus, name='contactus'),
     path('updateprofile', views.updateProfile, name='update-profile'),
-    path('getcity', views.getCities)
+    path('getcity', views.getCities),
+    path('deleteaccount', views.delete_account, name='deleteaccount'),
+    path('updateprofilepic',views.updateProfilePic,name='updateProfile')
 ]
 
 if settings.DEBUG:
