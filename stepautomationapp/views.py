@@ -10,7 +10,7 @@ from rest_framework.decorators import permission_classes
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 
-from .models import UserData
+from .models import UserData, UserFiles
 from .models import Country
 
 
@@ -201,6 +201,56 @@ def updateProfilePic(request):
         )
         userdetails.save()
         return redirect('/account-profile')
+
+
+@login_required(login_url='/login')
+def handleStepFiles(request):
+    user = User.objects.get(username=request.user)
+    try:
+        userdata = UserData.objects.get(userrelation=user)
+        username = user.username
+        profilepic = 'https://stepsaasautomation.herokuapp.com/media/' + str(userdata.profilepic)
+    except UserData.DoesNotExist:
+        profilepic = 'https://stepsaasautomation.herokuapp.com/media/media/profilepic.png',
+        username = request.user
+    userdata = UserFiles.objects.filter(user=user)
+    if userdata.count() == 0:
+        has_files = False
+    else:
+        has_files = True
+    print(has_files)
+    if request.method == 'POST':
+        userfile = UserFiles.objects.create(
+            user=user,
+            userFile=request.FILES.get('userfile')
+        )
+        userfile.save()
+        return render(
+            request,
+            'add_files.html',
+            {
+                'username': user.username,
+                'profilepic': profilepic,
+                'first_name': user.first_name,
+                'last_name': user.last_name,
+                'has_files': has_files,
+                'userdata': userdata,
+                'success': 'File Uploaded Successfully'
+            }
+        )
+    else:
+        return render(
+            request,
+            'add_files.html',
+            {
+                'username': username,
+                'profilepic': profilepic,
+                'first_name': user.first_name,
+                'last_name': user.last_name,
+                'has_files': has_files,
+                'userdata': userdata,
+            }
+        )
 
 
 def aboutus(request):

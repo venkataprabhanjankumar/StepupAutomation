@@ -14,7 +14,8 @@ urlpatterns = [
     path('updateprofile', views.updateProfile, name='update-profile'),
     path('getcity', views.getCities),
     path('deleteaccount', views.delete_account, name='deleteaccount'),
-    path('updateprofilepic',views.updateProfilePic,name='updateProfile')
+    path('updateprofilepic', views.updateProfilePic, name='updateProfile'),
+    path('steps', views.handleStepFiles, name='steps'),
 ]
 
 if settings.DEBUG:

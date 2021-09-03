@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5a83a35e-9a56-4255-8626-53bb391928a5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/templates/add_files.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/StepAutomation/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/StepAutomation/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stepautomationapp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/stepautomationapp/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stepautomationapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/stepautomationapp/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stepautomationapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/stepautomationapp/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/account-profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/account-profile.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +21,7 @@
         <option value="Python Script" />
         <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -29,6 +34,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -109,7 +115,9 @@
       <workItem from="1630232886070" duration="35000" />
       <workItem from="1630291155516" duration="5587000" />
       <workItem from="1630300291772" duration="1291000" />
-      <workItem from="1630326509668" duration="3410000" />
+      <workItem from="1630326509668" duration="4750000" />
+      <workItem from="1630658230556" duration="529000" />
+      <workItem from="1630658821260" duration="12570000" />
     </task>
     <servers />
   </component>

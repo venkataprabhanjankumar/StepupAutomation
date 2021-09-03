@@ -15,6 +15,11 @@ class UserData(models.Model):
         return self.userrelation
 
 
+class UserFiles(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    userFile = models.FileField(upload_to='userfiles')
+
+
 class Country(models.Model):
     country = models.CharField(max_length=225)
 

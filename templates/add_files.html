@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  
+
 <!-- Mirrored from around.createx.studio/account-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 05 Apr 2021 17:19:41 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
@@ -14,6 +14,7 @@
     <!-- Viewport-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
      <!-- Favicon and Touch Icons-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="manifest" href="{% static 'site.webmanifest' %}">
     <link rel="mask-icon" color="#5bbad5" href="{% static 'safari-pinned-tab.svg' %}">
     <meta name="msapplication-TileColor" content="#766df4">
@@ -119,7 +120,6 @@
   </head>
   <!-- Body-->
   <body style="background-color:#f7f7fc;">
-  {% if logged %}
     <!-- Google Tag Manager (noscript)-->
     <noscript>
       <iframe src="http://www.googletagmanager.com/ns.html?id=GTM-WKV3GT5" height="0" width="0" style="display: none; visibility: hidden;"></iframe>
@@ -167,14 +167,13 @@
           <!-- Sidebar-->
           <div class="col-lg-4 mb-4 mb-lg-0">
             <div class="bg-light rounded-3 shadow-lg">
-              <div class="px-4 py-4 mb-1 text-center"><img class="d-block rounded-circle mx-auto my-2" src="{{profilepic}}" at="Amanda Wilson" width="110">
+              <div class="px-4 py-4 mb-1 text-center"><img class="d-block rounded-circle mx-auto my-2" src={{profilepic}} at="Amanda Wilson" width="110">
                 <h6 class="mb-0 pt-1">{{first_name}} {{last_name}}</h6><span class="text-muted fs-sm">{{username}}</span>
               </div>
               <div class="d-lg-none px-4 pb-4 text-center"><a class="btn btn-primary px-5 mb-2" href="#account-menu" data-bs-toggle="collapse"><i class="ai-menu me-2"></i>Account menu</a></div>
               <div class="d-lg-block collapse pb-2" id="account-menu">
-                <h3 class="d-block bg-secondary fs-sm fw-semibold text-muted mb-0 px-4 py-3">Account settings</h3>
-                <a class="dropdown-item d-flex align-items-center nav-link-style" href="/account-profile">ProfileInfo</a>
-                <a class="dropdown-item d-flex align-items-center nav-link-style" href="/steps">Steps</a>
+                <h3 class="d-block bg-secondary fs-sm fw-semibold text-muted mb-0 px-4 py-3">Account settings</h3><a class="d-flex align-items-center nav-link-style px-4 py-3 " href="/account-profile">Profile info</a>
+                <a class="dropdown-item d-flex align-items-center nav-link-style px-4 py-3" href="/steps">Steps</a>
                 <a class="d-flex align-items-center nav-link-style px-4 py-3 border-top" style="color: crimson" href="logout"><i class="ai-log-out fs-lg opacity-60 me-2"></i>Sign out</a>
               </div>
 
@@ -190,104 +189,51 @@
                 </div>
                 <!-- Content-->
                 <div class="bg-secondary rounded-3 p-4 mb-4">
-                  <form method="post" action="/updateprofilepic" enctype="multipart/form-data">
+                    {% if success %}
+                        <p><span style="color: crimson">{{success}}</span></p>
+                    {% endif %}
+                  <form method="post" action="/steps" enctype="multipart/form-data">
                       {% csrf_token %}
-                    <div class="d-block d-sm-flex align-items-center">
-                      <!--<img class="d-block rounded-circle mx-sm-0 mx-auto mb-3 mb-sm-0" src={{profilepic}} alt="Amanda Wilson" width="110">-->
-                      <label for="file-input">
-                        <img class="d-block rounded-circle mx-sm-0 mx-auto mb-3 mb-sm-0" src={{profilepic}} alt="Amanda Wilson" width="110" />
-                      </label>
-                      <input style="display: none;" id="file-input" type="file" accept="image/*" name="profilepic" required />
-                      <div class="ps-sm-3 text-center text-sm-start">
-                        <button class="btn btn-light shadow btn-sm mb-2" type="submit" id="profile-pic"><i class="ai-refresh-cw me-2"></i>Change avatar</button>
-                        <div class="p mb-0 fs-ms text-muted">Upload JPG, GIF or PNG image. 300 x 300 required.</div>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-                <div>
-                  <div id="loaderprofile" class="lds-dual-ring hidden overlay" style="width: 100%;height: 100%"></div>
-                </div>
-                <span id="account-display-msg"></span>
-                <form method="post" action="updateprofile">
-                  {% csrf_token %}
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <div class="mb-3 pb-1">
-                        <label class="form-label px-0" for="account-fn">First Name</label>
-                        <input class="form-control" type="text" id="account-fn" value={{first_name}} name="firstName" required>
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="mb-3 pb-1">
-                        <label class="form-label px-0" for="account-ln">Last Name</label>
-                        <input class="form-control" type="text" id="account-ln" value={{last_name}} name="lastName" required>
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="mb-3 pb-1">
-                        <label class="form-label px-0" for="account-email">Email address</label>
-                        <input class="form-control" type="text" id="account-email" value={{email}} name="email" required>
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="mb-3 pb-1">
-                        <label class="form-label px-0" for="account-username">Username</label>
-                        <div class="input-group"><span class="input-group-text">@</span>
-                          <input class="form-control" type="text" id="account-username" value={{username}} name="username" required>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="mb-3 pb-1">
-                        <label class="form-label px-0" for="account-country">Country</label>
-                        <select class="form-select" id="account-country" name="country">
-                          {% if country %}
-                            <option>{{country}}</option>
-                          {% endif %}
-                          {% for country in countries %}
-                            <option value={{country.country}}>{{country.country}}</option>
-                          {% endfor %}
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="mb-3 pb-1">
-                        <label class="form-label px-0" for="account-city">City</label>
-                        <select class="form-select" id="account-city" name="city">
-                          {% if city %}
-                            <option>{{city}}</option>
-                          {% endif %}
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="mb-3 pb-1">
-                        <label class="form-label px-0" for="account-address">Address Line</label>
-                        <input class="form-control" type="text" id="account-address" value="{{address}}" name="address" required>
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="mb-3 pb-1">
-                        <label class="form-label px-0" for="account-zip">ZIP Code</label>
-                        <input class="form-control" type="text" id="account-zip" value="{{zipcode}}" name="zipcode" required>
-                      </div>
-                    </div>
-                    <div class="col-12">
-                      <hr class="mt-2 mb-4">
-                      <div class="d-flex flex-wrap justify-content-between align-items-center">
-                        <div class="form-check d-block">
-                          <input class="form-check-input" type="checkbox" id="show-email" checked>
-                          <label class="form-check-label" for="show-email">Show my email to registered users</label>
-                        </div>
-                        <button class="btn btn-primary mt-3 mt-sm-0" type="submit" id="updatebutton"><i class="ai-save fs-lg me-2"></i>Save changes</button>
-                      </div>
-                    </div>
-                  </div>
+                      <label for="formFileLg" class="form-label">Please upload the Steps Documents</label>
+                      <input class="form-control form-control-lg" id="formFileLg" name="userfile" type="file" />
+                      <br/><br/>
+                      <button type="submit" class="btn btn-primary btn-lg">Upload Document</button>
                 </form>
+              </div>
+                  {% if has_files == False %}
+                    <p><span style="background-color: crimson">You Don't Have Any Files till Now</span></p>
+                  {% endif %}
+                  <div class="card-body table-responsive p-0" style="height: 300px;">
+                      {% if has_files %}
+                        <table class="table table-head-fixed text-nowrap" id="items-display-table">
+                          <thead>
+                            <tr>
+                              <th> File Name</th>
+                                <th>Preview</th>
+                              <th> Download </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                              {% for data in userdata %}
+                                  <tr>
+                                    <td>
+                                        {{ data.userFile }}
+                                    </td>
+                                      <td>
+                                         <a class="btn btn-link text-danger fw-medium btn-sm mb-2" href="/media/{{data.userFile}}" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></i>Preview</a>
+                                      </td>
+                                    <td>
+                                        <a class="btn btn-link text-danger fw-medium btn-sm mb-2" download="/media/{{data.userFile}}" href="/media/{{data.userFile}}"><i class="fa fa-download" aria-hidden="true"></i></i>Download</a>
+                                    </td>
+                                  </tr>
+                              {% endfor %}
+                          </tbody>
+                        </table>
+                      {% endif %}
               </div>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </main>
@@ -332,7 +278,6 @@
     <!-- Main theme script-->
     <script src="{% static 'js/theme.min.js' %}"></script>
   </body>
-  {% endif %}
 
 <!-- Mirrored from around.createx.studio/account-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 05 Apr 2021 17:19:41 GMT -->
 </html>
