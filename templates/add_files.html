@@ -139,7 +139,7 @@
           <div class="d-flex align-items-center order-lg-3 ms-lg-auto">
             <div class="navbar-tool dropdown"><a class="navbar-tool-icon-box" href="account-profile.html"><img class="navbar-tool-icon-box-img" src={{profilepic}} alt="Avatar"></a><a class="navbar-tool-label dropdown-toggle" href="account-profile"><small>Hello,</small>{{username}}</a>
               <ul class="dropdown-menu dropdown-menu-end" style="width: 15rem;">
-                <li><a class="dropdown-item d-flex align-items-center" style="color: crimson" href="logout"><i class="ai-log-out fs-base opacity-60 me-2"></i>Sign out</a></li>
+                <li><a class="dropdown-item d-flex align-items-center" style="color: crimson" href="/logout"><i class="ai-log-out fs-base opacity-60 me-2"></i>Sign out</a></li>
               </ul>
             </div>
           </div>
@@ -174,7 +174,7 @@
               <div class="d-lg-block collapse pb-2" id="account-menu">
                 <h3 class="d-block bg-secondary fs-sm fw-semibold text-muted mb-0 px-4 py-3">Account settings</h3><a class="d-flex align-items-center nav-link-style px-4 py-3 " href="/account-profile">Profile info</a>
                 <a class="dropdown-item d-flex align-items-center nav-link-style px-4 py-3" href="/steps">Steps</a>
-                <a class="d-flex align-items-center nav-link-style px-4 py-3 border-top" style="color: crimson" href="logout"><i class="ai-log-out fs-lg opacity-60 me-2"></i>Sign out</a>
+                <a class="d-flex align-items-center nav-link-style px-4 py-3 border-top" style="color: crimson" href="/logout"><i class="ai-log-out fs-lg opacity-60 me-2"></i>Sign out</a>
               </div>
 
             </div>
@@ -185,7 +185,7 @@
               <div class="py-2 p-md-3">
                 <!-- Title + Delete link-->
                 <div class="d-sm-flex align-items-center justify-content-between pb-4 text-center text-sm-start">
-                  <h1 class="h3 mb-2 text-nowrap">Profile info</h1><a class="btn btn-link text-danger fw-medium btn-sm mb-2" href="deleteaccount"><i class="ai-trash-2 fs-base me-2"></i>Delete account                        </a>
+                  <h1 class="h3 mb-2 text-nowrap">Steps</h1><a class="btn btn-link text-danger fw-medium btn-sm mb-2" href="/deleteaccount"><i class="ai-trash-2 fs-base me-2"></i>Delete account                        </a>
                 </div>
                 <!-- Content-->
                 <div class="bg-secondary rounded-3 p-4 mb-4">
@@ -194,10 +194,22 @@
                     {% endif %}
                   <form method="post" action="/steps" enctype="multipart/form-data">
                       {% csrf_token %}
+                      <div class="mb-3 pb-1">
+                        <label class="form-label px-0" for="project-name">Project Name</label>
+                        <input class="form-control" type="text" id="project-name" name="projectName" required>
+                      </div>
+                      <div class="mb-3 pb-1">
+                        <label class="form-label px-0" for="customer-name">Customer Name</label>
+                        <input class="form-control" type="text" id="customer-name" name="customerName" required>
+                      </div>
+                      <div class="mb-3 pb-1">
+                        <label class="form-label px-0" for="project-description">Project Description</label>
+                        <textarea name="projectDescription" class="form-control" id="project-description"></textarea>
+                      </div>
                       <label for="formFileLg" class="form-label">Please upload the Steps Documents</label>
-                      <input class="form-control form-control-lg" id="formFileLg" name="userfile" type="file" />
+                      <input class="form-control form-control-lg" id="formFileLg" name="userfile" type="file" required />
                       <br/><br/>
-                      <button type="submit" class="btn btn-primary btn-lg">Upload Document</button>
+                      <button type="submit" class="btn btn-primary btn-lg">Save</button>
                 </form>
               </div>
                   {% if has_files == False %}
@@ -208,6 +220,9 @@
                         <table class="table table-head-fixed text-nowrap" id="items-display-table">
                           <thead>
                             <tr>
+                                <th>Project Name</th>
+                                <th>Customer Name</th>
+                                <th>Project Description</th>
                               <th> File Name</th>
                                 <th>Preview</th>
                               <th> Download </th>
@@ -216,6 +231,15 @@
                           <tbody>
                               {% for data in userdata %}
                                   <tr>
+                                      <td>
+                                          {{data.projectName}}
+                                      </td>
+                                      <td>
+                                          {{data.customerName}}
+                                      </td>
+                                      <td>
+                                          {{data.description}}
+                                      </td>
                                     <td>
                                         {{ data.userFile }}
                                     </td>

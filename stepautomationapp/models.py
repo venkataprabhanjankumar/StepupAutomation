@@ -17,6 +17,9 @@ class UserData(models.Model):
 
 class UserFiles(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    projectName = models.CharField(max_length=225)
+    customerName = models.CharField(max_length=225)
+    description = models.TextField()
     userFile = models.FileField(upload_to='userfiles')
 
 

@@ -16,7 +16,7 @@ from .models import Country
 
 def index(request):
     if request.user.is_authenticated:
-        return redirect('/account-profile')
+        return redirect('/steps')
     else:
         return render(
             request,
@@ -220,8 +220,14 @@ def handleStepFiles(request):
         has_files = True
     print(has_files)
     if request.method == 'POST':
+        projectName = request.POST.get('projectName')
+        customerName = request.POST.get('customerName')
+        projectDescription = request.POST.get('projectDescription')
         userfile = UserFiles.objects.create(
             user=user,
+            projectName=projectName,
+            customerName=customerName,
+            description=projectDescription,
             userFile=request.FILES.get('userfile')
         )
         userfile.save()
@@ -235,7 +241,7 @@ def handleStepFiles(request):
                 'last_name': user.last_name,
                 'has_files': has_files,
                 'userdata': userdata,
-                'success': 'File Uploaded Successfully'
+                'success': 'Updated Information Successfully'
             }
         )
     else:
