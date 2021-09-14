@@ -16,6 +16,7 @@ urlpatterns = [
     path('deleteaccount', views.delete_account, name='deleteaccount'),
     path('updateprofilepic', views.updateProfilePic, name='updateProfile'),
     path('steps', views.handleStepFiles, name='steps'),
+    path('project/<projectName>', views.get_project_details)
 ]
 
 if settings.DEBUG:

@@ -221,29 +221,45 @@ def handleStepFiles(request):
     print(has_files)
     if request.method == 'POST':
         projectName = request.POST.get('projectName')
-        customerName = request.POST.get('customerName')
-        projectDescription = request.POST.get('projectDescription')
-        userfile = UserFiles.objects.create(
-            user=user,
-            projectName=projectName,
-            customerName=customerName,
-            description=projectDescription,
-            userFile=request.FILES.get('userfile')
-        )
-        userfile.save()
-        return render(
-            request,
-            'add_files.html',
-            {
-                'username': user.username,
-                'profilepic': profilepic,
-                'first_name': user.first_name,
-                'last_name': user.last_name,
-                'has_files': has_files,
-                'userdata': userdata,
-                'success': 'Updated Information Successfully'
-            }
-        )
+        try:
+            project = UserFiles.objects.get(projectName=projectName)
+            return render(
+                request,
+                'add_files.html',
+                {
+                    'username': user.username,
+                    'profilepic': profilepic,
+                    'first_name': user.first_name,
+                    'last_name': user.last_name,
+                    'has_files': has_files,
+                    'userdata': userdata,
+                    'fail': 'Project Name Already Exists'
+                }
+            )
+        except UserFiles.DoesNotExist:
+            customerName = request.POST.get('customerName')
+            projectDescription = request.POST.get('projectDescription')
+            userfile = UserFiles.objects.create(
+                user=user,
+                projectName=projectName,
+                customerName=customerName,
+                description=projectDescription,
+                userFile=request.FILES.get('userfile')
+            )
+            userfile.save()
+            return render(
+                request,
+                'add_files.html',
+                {
+                    'username': user.username,
+                    'profilepic': profilepic,
+                    'first_name': user.first_name,
+                    'last_name': user.last_name,
+                    'has_files': has_files,
+                    'userdata': userdata,
+                    'success': 'Updated Information Successfully'
+                }
+            )
     else:
         return render(
             request,
@@ -255,6 +271,39 @@ def handleStepFiles(request):
                 'last_name': user.last_name,
                 'has_files': has_files,
                 'userdata': userdata,
+            }
+        )
+
+
+@login_required(login_url='/login')
+def get_project_details(request, projectName):
+    userdetails = User.objects.get(username=request.user)
+    data = UserFiles.objects.get(user=userdetails, projectName=projectName)
+    try:
+        userdata = UserData.objects.get(userrelation=userdetails)
+        return render(
+            request,
+            'project_details.html',
+            {
+                'username': userdetails.username,
+                'email': userdetails.email,
+                'first_name': userdetails.first_name,
+                'last_name': userdetails.last_name,
+                'data': data,
+                'profilepic': 'https://stepsaasautomation.herokuapp.com/media/' + str(userdata.profilepic),
+            }
+        )
+    except UserData.DoesNotExist:
+        return render(
+            request,
+            'project_details.html',
+            {
+                'username': userdetails.username,
+                'email': userdetails.email,
+                'first_name': userdetails.first_name,
+                'last_name': userdetails.last_name,
+                'data': data,
+                'profilepic': 'https://stepsaasautomation.herokuapp.com/media/media/profilepic.png',
             }
         )
 

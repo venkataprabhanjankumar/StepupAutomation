@@ -18,6 +18,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'stepautomationapp.apps.StepautomationappConfig',
+    'userforms.apps.UserformsConfig',
     'rest_framework',
     'rest_framework.authtoken',
 ]

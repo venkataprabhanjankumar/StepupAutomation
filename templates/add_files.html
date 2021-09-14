@@ -173,7 +173,9 @@
               <div class="d-lg-none px-4 pb-4 text-center"><a class="btn btn-primary px-5 mb-2" href="#account-menu" data-bs-toggle="collapse"><i class="ai-menu me-2"></i>Account menu</a></div>
               <div class="d-lg-block collapse pb-2" id="account-menu">
                 <h3 class="d-block bg-secondary fs-sm fw-semibold text-muted mb-0 px-4 py-3">Account settings</h3><a class="d-flex align-items-center nav-link-style px-4 py-3 " href="/account-profile">Profile info</a>
-                <a class="dropdown-item d-flex align-items-center nav-link-style px-4 py-3" href="/steps">Steps</a>
+                <a class="dropdown-item d-flex align-items-center nav-link-style" href="/steps">Steps</a>
+                  <a class="dropdown-item d-flex align-items-center nav-link-style" href="/forms">Create forms</a>
+                  <a class="dropdown-item d-flex align-items-center nav-link-style" href="forms/getforms">Forms</a>
                 <a class="d-flex align-items-center nav-link-style px-4 py-3 border-top" style="color: crimson" href="/logout"><i class="ai-log-out fs-lg opacity-60 me-2"></i>Sign out</a>
               </div>
 
@@ -191,6 +193,9 @@
                 <div class="bg-secondary rounded-3 p-4 mb-4">
                     {% if success %}
                         <p><span style="color: crimson">{{success}}</span></p>
+                    {% endif %}
+                    {% if fail %}
+                        <p><span style="color: crimson">{{fail}}</span></p>
                     {% endif %}
                   <form method="post" action="/steps" enctype="multipart/form-data">
                       {% csrf_token %}
@@ -232,7 +237,7 @@
                               {% for data in userdata %}
                                   <tr>
                                       <td>
-                                          {{data.projectName}}
+                                          <a style="text-decoration: none" href="/project/{{data.projectName}}">{{data.projectName}}</a>
                                       </td>
                                       <td>
                                           {{data.customerName}}
