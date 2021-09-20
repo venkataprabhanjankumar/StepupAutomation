@@ -3,14 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="5a83a35e-9a56-4255-8626-53bb391928a5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StepAutomation/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/StepAutomation/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stepautomationapp/static/js/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/stepautomationapp/static/js/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stepautomationapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/stepautomationapp/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/about.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/account-profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/account-profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/add_files.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/add_files.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/contacts-v3.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/contacts-v3.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/demo-web-studio.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/demo-web-studio.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -138,7 +130,8 @@
       <workItem from="1631607354466" duration="2820000" />
       <workItem from="1631610236143" duration="869000" />
       <workItem from="1631612175238" duration="372000" />
-      <workItem from="1632121242349" duration="9113000" />
+      <workItem from="1632121242349" duration="9830000" />
+      <workItem from="1632132848499" duration="681000" />
     </task>
     <servers />
   </component>
