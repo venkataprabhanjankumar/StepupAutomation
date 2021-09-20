@@ -48,7 +48,7 @@ def signin(request):
         keepsignin = request.POST.get('keepsignin')
         print(keepsignin)
         try:
-            users = User.objects.get(Q(username=username) | Q(email=username))
+            users = User.objects.get(email=username)
             if check_password(password, users.password):
                 login(request, users)
                 return HttpResponse(json.dumps({'status_msg': 'Ok'}),
@@ -63,27 +63,24 @@ def signin(request):
 
 def signup(request):
     if request.method == 'POST':
-        first_name = request.POST.get('first_name')
-        last_name = request.POST.get('last_name')
-        username = request.POST.get('username')
         email = request.POST.get('email')
         password = request.POST.get('password')
-        usersemail = User.objects.filter(Q(username=username) | Q(email=email))
-        if len(usersemail) != 0:
+        try:
+            usersemail = User.objects.get(email=email)
             return HttpResponse(json.dumps({'status_msg': 'NotOk', 'msg': 'User or Email Already Exists'}),
                                 content_type='application/json')
-        user = User.objects.create_user(
-            username=username,
-            password=password,
-            email=email,
-        )
-        user.first_name = first_name
-        user.last_name = last_name
-        user.is_staff = False
-        user.is_superuser = False
-        user.save()
-        return HttpResponse(json.dumps({'status_msg': 'Ok', 'msg': 'Successfully Registered'}),
-                            content_type='application/json')
+        except User.DoesNotExist:
+            user = User.objects.create_user(
+                username=email,
+                password=password,
+                email=email,
+            )
+            user.is_staff = False
+            user.is_superuser = False
+            user.save()
+            login(request, user)
+            return HttpResponse(json.dumps({'status_msg': 'Ok', 'msg': 'Successfully Registered'}),
+                                content_type='application/json')
 
 
 @login_required(login_url='/')
@@ -145,40 +142,24 @@ def getCities(request):
 
 @login_required(login_url='/')
 def updateProfile(request):
+    user = User.objects.get(username=request.user)
     try:
-        user = User.objects.get(username=request.user)
-        username = request.POST.get('username')
-        email = request.POST.get('email')
-        first_name = request.POST.get('firstName')
-        last_name = request.POST.get('lastName')
-        user.first_name = first_name
-        user.last_name = last_name
-        user.username = username
-        user.email = email
-        user.save()
-        try:
-            userdata = UserData.objects.get(userrelation=user.id)
-            userdata.country = request.POST.get('country')
-            userdata.city = request.POST.get('city')
-            userdata.address = request.POST.get('address')
-            userdata.zipcode = request.POST.get('zipcode')
-            userdata.save()
-        except UserData.DoesNotExist:
-            userdata = UserData.objects.create(
-                userrelation=user,
-                country=request.POST.get('country'),
-                city=request.POST.get('city'),
-                address=request.POST.get('address'),
-                zipcode=request.POST.get('zipcode')
-            )
-            userdata.save()
-        return redirect('/account-profile')
-    except User.DoesNotExist:
-        return render(
-            request,
-            'demo-web-studio.html',
-            {}
+        userdata = UserData.objects.get(userrelation=user.id)
+        userdata.country = request.POST.get('country')
+        userdata.city = request.POST.get('city')
+        userdata.address = request.POST.get('address')
+        userdata.zipcode = request.POST.get('zipcode')
+        userdata.save()
+    except UserData.DoesNotExist:
+        userdata = UserData.objects.create(
+            userrelation=user,
+            country=request.POST.get('country'),
+            city=request.POST.get('city'),
+            address=request.POST.get('address'),
+            zipcode=request.POST.get('zipcode')
         )
+        userdata.save()
+    return redirect('/account-profile')
 
 
 @login_required(login_url='/login')
@@ -210,8 +191,9 @@ def handleStepFiles(request):
         userdata = UserData.objects.get(userrelation=user)
         username = user.username
         profilepic = 'https://stepsaasautomation.herokuapp.com/media/' + str(userdata.profilepic)
+        print(profilepic)
     except UserData.DoesNotExist:
-        profilepic = 'https://stepsaasautomation.herokuapp.com/media/media/profilepic.png',
+        profilepic = 'https://stepsaasautomation.herokuapp.com/media/media/profilepic.png'
         username = request.user
     userdata = UserFiles.objects.filter(user=user)
     if userdata.count() == 0:

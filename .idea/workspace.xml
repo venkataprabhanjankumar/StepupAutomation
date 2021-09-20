@@ -2,35 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5a83a35e-9a56-4255-8626-53bb391928a5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/static/css/bootstarp.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/css/font-awesome.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/css/style.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/form_creation.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/handle_forms.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stepautomationapp/static/css/bootstarp.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stepautomationapp/static/css/font-awesome.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stepautomationapp/static/css/style.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stepautomationapp/static/img/display.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stepautomationapp/static/img/envato.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stepautomationapp/static/img/iphone.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stepautomationapp/static/img/map-image.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stepautomationapp/static/img/themeforest.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stepautomationapp/static/js/form_creation.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stepautomationapp/static/js/handle_forms.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/create_forms.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/get_form_details.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/project_details.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/publish_form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/response_recorded.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/view_form_responses.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/userforms/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/StepAutomation/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/StepAutomation/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StepAutomation/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/StepAutomation/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stepautomationapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/stepautomationapp/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stepautomationapp/static/js/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/stepautomationapp/static/js/auth.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stepautomationapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/stepautomationapp/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/about.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/account-profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/account-profile.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/add_files.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/add_files.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/contacts-v3.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/contacts-v3.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/demo-web-studio.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/demo-web-studio.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -156,6 +136,9 @@
       <workItem from="1631588898256" duration="909000" />
       <workItem from="1631598508720" duration="2761000" />
       <workItem from="1631607354466" duration="2820000" />
+      <workItem from="1631610236143" duration="869000" />
+      <workItem from="1631612175238" duration="372000" />
+      <workItem from="1632121242349" duration="9113000" />
     </task>
     <servers />
   </component>

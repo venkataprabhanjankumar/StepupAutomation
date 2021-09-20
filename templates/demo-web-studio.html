@@ -152,7 +152,7 @@
                   {% csrf_token %}
                   <div class="mb-3">
                     <div class="input-group"><i class="ai-mail position-absolute top-50 start-0 translate-middle-y ms-3"></i>
-                      <input class="form-control rounded" type="text" placeholder="Email or Username" name="email" id="emaill" autocomplete="false" required>
+                      <input class="form-control rounded" type="email" placeholder="Email" name="email" id="emaill" autocomplete="false" required>
                     </div>
                   </div>
                   <div class="mb-3">
@@ -188,16 +188,7 @@
                 <form class="needs-validation" novalidate method="post">
                   {% csrf_token %}
                   <div class="mb-3">
-                    <input class="form-control" type="text" placeholder="Fist Name" name="first_name" id="first_name" required>
-                  </div>
-                  <div class="mb-3">
-                    <input class="form-control" type="text" placeholder="Last name" name="last_name" id="last_name" required>
-                  </div>
-                  <div class="mb-3">
                     <input class="form-control" type="text" placeholder="Email" name="email" id="email" required>
-                  </div>
-                  <div class="mb-3">
-                    <input class="form-control" type="text" placeholder="Username" name="username" id="username" required>
                   </div>
                   <div class="mb-3 password-toggle">
                     <input class="form-control" type="password" placeholder="Password" name="password" id="password" required>
@@ -223,7 +214,7 @@
       <!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page.-->
       <header class="header navbar navbar-expand-lg navbar-dark navbar-floating navbar-sticky" data-scroll-header data-fixed-element>
         <div class="container px-0 px-xl-3">
-          <button class="navbar-toggler ms-n2 me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#primaryMenu"><span class="navbar-toggler-icon"></span></button><a class="navbar-brand flex-shrink-0 order-lg-1 mx-auto ms-lg-0 pe-lg-2 me-lg-4" href="index-2.html">StepSaasAutomation</a>
+          <button class="navbar-toggler ms-n2 me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#primaryMenu"><span class="navbar-toggler-icon"></span></button><a class="navbar-brand flex-shrink-0 order-lg-1 mx-auto ms-lg-0 pe-lg-2 me-lg-4" href="/">StepSaasAutomation</a>
           <div class="d-flex align-items-center order-lg-3 ms-lg-auto"><a class="nav-link-style fs-sm text-nowrap" href="#modal-signin" data-bs-toggle="modal" data-view="#modal-signin-view"><i class="ai-user fs-xl me-2 align-middle"></i>Sign in</a><a class="btn btn-primary ms-grid-gutter d-none d-lg-inline-block navbar-btn" href="#modal-signin" data-bs-toggle="modal" data-view="#modal-signup-view">Sign up</a><a class="btn btn-primary ms-grid-gutter d-none d-lg-inline-block navbar-stuck-btn" href="#modal-signin" data-bs-toggle="modal" data-view="#modal-signup-view">Sign up</a></div>
           <div class="offcanvas offcanvas-collapse order-lg-2" id="primaryMenu">
             <div class="offcanvas-cap navbar-shadow">
@@ -266,17 +257,15 @@
       <section class="container position-relative zindex-5">
         <div class="d-block d-sm-none" style="margin-top: -160px;" >
         </div>
-        <div class="d-none d-sm-block d-lg-none" style="margin-top: -360px;"></div>
-        <div class="d-none d-lg-block" style="margin-top: -450px;"></div>
-        <div class="frame-browser border-light tns-carousel-wrapper mx-auto" style="background-image:url({% static 'img/display.jpg' %});height:600px">
-          <div class="frame-browser-toolbar">
-          </div>
+        <div class="d-none d-sm-block d-lg-none" style="margin-top: -400px;"></div>
+        <div class="d-none d-lg-block" style="margin-top: -600px;"></div>
+        <div class="jumbotron jumbotron-fluid" style="height:500px;background-color: white">
           <div>
             <div class="tns-carousel-inner" data-carousel-options="{&quot;mode&quot;: &quot;gallery&quot;, &quot;controls&quot;: false, &quot;nav&quot;: false, &quot;autoplay&quot;: true, &quot;autoplayTimeout&quot;: 6000}">
               <div class="intro-text" style="padding-left: 300px">
-                <div class="intro-heading text-uppercase" style="margin:auto;">&nbsp;&nbsp;&nbsp;<h1 style="color: aliceblue">SIMPLIFY THE PROCESS</h1></div>
-                <div class="intro-lead-in"><span><br><h3 style="color: aliceblue">One-stop, step-by-step process instructions for your client</h3><br><br></span></div>&nbsp;&nbsp;&nbsp;<a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" role="button" href="#">FREE FOR 15-DAYS</a>
-            </div>
+                <div class="intro-heading text-uppercase" style="margin:auto;">&nbsp;&nbsp;&nbsp;<h1>SIMPLIFY THE PROCESS</h1></div>
+                <div class="intro-lead-in"><span><br><h3>One-stop, step-by-step process instructions for your client</h3><br><br></span></div>&nbsp;&nbsp;&nbsp;<a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" role="button" href="#">FREE FOR 15-DAYS</a>
+              </div>
             </div>
           </div>
         </div>
