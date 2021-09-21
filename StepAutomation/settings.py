@@ -9,6 +9,8 @@ SECRET_KEY = config('SECRET_KEY', default=string.ascii_letters)
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='127.0.0.1', cast=Csv())
 
 DEBUG = config('DEBUG', default=True, cast=bool)
+SENDGRID_EMAIL_API = config('SENDGRID_EMAIL_API')
+FROM_EMAIL = config('FROM_EMAIL')
 
 INSTALLED_APPS = [
     'django.contrib.admin',

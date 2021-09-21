@@ -9,6 +9,10 @@ from rest_framework import permissions
 from rest_framework.decorators import permission_classes
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
+from rest_framework.authtoken.models import Token
+from django.conf import settings
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail, Email, To
 
 from .models import UserData, UserFiles
 from .models import Country
@@ -287,6 +291,113 @@ def get_project_details(request, projectName):
                 'data': data,
                 'profilepic': 'https://stepsaasautomation.herokuapp.com/media/media/profilepic.png',
             }
+        )
+
+
+def forgetPassword(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        try:
+            user = User.objects.get(email=email)
+            try:
+                authToken = Token.objects.get(user_id=user.id)
+                return render(
+                    request,
+                    'password-recovery.html',
+                    {
+                        'fail': 'Email Already Sent to ' + email
+                    }
+                )
+            except Token.DoesNotExist:
+                token_generation = Token.objects.create(user_id=user.id)
+                token_generation.save()
+                authToken = Token.objects.get(user_id=user.id)
+                authKey = authToken.key
+                try:
+                    sg = SendGridAPIClient(settings.SENDGRID_EMAIL_API)
+                    message = Mail(
+                        from_email=Email(settings.FROM_EMAIL),
+                        to_emails=To(email),
+                        subject='Password Reset For StepSaas Application',
+                        html_content='<a href="https://stepsaasautomation.herokuapp.com/update-password/' + authKey + '"><input '
+                                                                                                   'type="submit" '
+                                                                                                   'value="Reset '
+                                                                                                   'Password"></a> '
+                    )
+                    print("Message")
+                    response = sg.send(message)
+                    print(response.status_code)
+                    return render(
+                        request,
+                        'password-recovery.html',
+                        {
+                            'success': 'Password reset link sent to  ' + email
+                        }
+                    )
+                except Exception:
+                    return render(
+                        request,
+                        'password-recovery.html',
+                        {
+                            'fail': 'An Error Occurred '
+                        }
+                    )
+        except User.DoesNotExist:
+            return render(
+                request,
+                'password-recovery.html',
+                {
+                    'fail': 'Email Does not exists'
+                }
+            )
+    else:
+        return render(
+            request,
+            'password-recovery.html'
+        )
+
+
+def update_password(request, token):
+    try:
+        user_token = Token.objects.get(key=token)
+        if request.method == 'POST':
+            password = request.POST.get('password')
+            cpassword = request.POST.get('cpassword')
+            if password == cpassword:
+                print(user_token)
+                print(user_token.user)
+                user = User.objects.get(username=user_token.user)
+                user.set_password(password)
+                user.save()
+                user_token.delete()
+                return render(
+                    request,
+                    'update_password.html',
+                    {
+                        'success': 'Password Updated',
+                        'expires': False
+                    }
+                )
+            else:
+                return render(
+                    request,
+                    'update_password.html',
+                    {
+                        'fail': 'Password not Matched',
+                        'expires': False
+                    }
+                )
+        else:
+            return render(
+                request,
+                'update_password.html',
+                {'expires': False}
+            )
+    except Token.DoesNotExist:
+        return render(
+            request,
+            'update_password.html',
+            {'expires': True}
         )
 
 

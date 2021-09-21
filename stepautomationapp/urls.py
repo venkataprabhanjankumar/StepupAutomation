@@ -16,7 +16,9 @@ urlpatterns = [
     path('deleteaccount', views.delete_account, name='deleteaccount'),
     path('updateprofilepic', views.updateProfilePic, name='updateProfile'),
     path('steps', views.handleStepFiles, name='steps'),
-    path('project/<projectName>', views.get_project_details)
+    path('project/<projectName>', views.get_project_details),
+    path('forget-password', views.forgetPassword, name='forgetpassword'),
+    path('update-password/<token>', views.update_password, name='update_password'),
 ]
 
 if settings.DEBUG:
