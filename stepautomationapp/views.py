@@ -14,11 +14,15 @@ from django.conf import settings
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail, Email, To
 
-from .models import UserData, UserFiles
+from .models import UserData, UserFiles, Steps, Documents
 from .models import Country
+from userforms.models import UserForms
+from .forms import Stepsform, DocumentsForm
 
 
+# landing page
 def index(request):
+    # if user is authenticated it will redirect to dashboard
     if request.user.is_authenticated:
         return redirect('/steps')
     else:
@@ -37,14 +41,18 @@ def index(request):
     )'''
 
 
-@login_required(login_url='/login')
+# delete the user account
+@login_required(login_url='/')
 def delete_account(request):
     user = User.objects.get(username=request.user)
+    UserForms.objects.filter(form_user=request.user.username).delete()
+    UserFiles.objects.filter(user=user).delete()
     logout(request)
     user.delete()
     return redirect('/')
 
 
+# check the user is authenticated or not
 def signin(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -65,15 +73,18 @@ def signin(request):
                                 content_type='application/json')
 
 
+# creating new user
 def signup(request):
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
         try:
+            # if email already exists it will display error message
             usersemail = User.objects.get(email=email)
             return HttpResponse(json.dumps({'status_msg': 'NotOk', 'msg': 'User or Email Already Exists'}),
                                 content_type='application/json')
         except User.DoesNotExist:
+            # if emails doesn't exists it will create the user and redirect to users dashboard
             user = User.objects.create_user(
                 username=email,
                 password=password,
@@ -92,6 +103,7 @@ def dashboard(request):
     userdetails = User.objects.get(username=request.user)
     countries = Country.objects.all()
     try:
+        # if user updated his profile picture or data
         userdata = UserData.objects.get(userrelation=userdetails)
         print(userdata.profilepic)
         print(userdata.country)
@@ -132,6 +144,8 @@ def dashboard(request):
         )
 
 
+# to create the dependent dropdown for the city and states
+# this will return cities dependent on their countries
 @permission_classes([permissions.AllowAny])
 def getCities(request):
     sname = request.GET['countrydata']
@@ -144,6 +158,7 @@ def getCities(request):
     return HttpResponse(json.dumps(results), content_type='application/json')
 
 
+# for updating the user profile
 @login_required(login_url='/')
 def updateProfile(request):
     user = User.objects.get(username=request.user)
@@ -166,7 +181,8 @@ def updateProfile(request):
     return redirect('/account-profile')
 
 
-@login_required(login_url='/login')
+# for updating the profile picture of the user
+@login_required(login_url='/')
 def updateProfilePic(request):
     user = User.objects.get(username=request.user)
     try:
@@ -188,7 +204,8 @@ def updateProfilePic(request):
         return redirect('/account-profile')
 
 
-@login_required(login_url='/login')
+# to create steps of the user
+@login_required(login_url='/')
 def handleStepFiles(request):
     user = User.objects.get(username=request.user)
     try:
@@ -208,7 +225,8 @@ def handleStepFiles(request):
     if request.method == 'POST':
         projectName = request.POST.get('projectName')
         try:
-            project = UserFiles.objects.get(projectName=projectName)
+            # check if the project name already exist in that user account
+            project = UserFiles.objects.get(user=user, projectName=projectName)
             return render(
                 request,
                 'add_files.html',
@@ -223,6 +241,7 @@ def handleStepFiles(request):
                 }
             )
         except UserFiles.DoesNotExist:
+            # if project name doesn't exists it will create steps for the user
             customerName = request.POST.get('customerName')
             projectDescription = request.POST.get('projectDescription')
             userfile = UserFiles.objects.create(
@@ -261,7 +280,8 @@ def handleStepFiles(request):
         )
 
 
-@login_required(login_url='/login')
+# to get the details of the project based on their project name
+@login_required(login_url='/')
 def get_project_details(request, projectName):
     userdetails = User.objects.get(username=request.user)
     data = UserFiles.objects.get(user=userdetails, projectName=projectName)
@@ -294,10 +314,12 @@ def get_project_details(request, projectName):
         )
 
 
+# to send the forget password link to the user registered email
 def forgetPassword(request):
     if request.method == 'POST':
         email = request.POST.get('email')
         try:
+            # check the user entered email is in records
             user = User.objects.get(email=email)
             try:
                 authToken = Token.objects.get(user_id=user.id)
@@ -309,6 +331,7 @@ def forgetPassword(request):
                     }
                 )
             except Token.DoesNotExist:
+                # it will generate a token to identify the user
                 token_generation = Token.objects.create(user_id=user.id)
                 token_generation.save()
                 authToken = Token.objects.get(user_id=user.id)
@@ -320,9 +343,9 @@ def forgetPassword(request):
                         to_emails=To(email),
                         subject='Password Reset For StepSaas Application',
                         html_content='<a href="https://stepsaasautomation.herokuapp.com/update-password/' + authKey + '"><input '
-                                                                                                   'type="submit" '
-                                                                                                   'value="Reset '
-                                                                                                   'Password"></a> '
+                                                                                                                      'type="submit" '
+                                                                                                                      'value="Reset '
+                                                                                                                      'Password"></a> '
                     )
                     print("Message")
                     response = sg.send(message)
@@ -357,6 +380,7 @@ def forgetPassword(request):
         )
 
 
+# to update the password from the forget password link
 def update_password(request, token):
     try:
         user_token = Token.objects.get(key=token)
@@ -398,6 +422,223 @@ def update_password(request, token):
             request,
             'update_password.html',
             {'expires': True}
+        )
+
+
+@login_required(login_url='/')
+def create_steps(request):
+    user = User.objects.get(username=request.user)
+    try:
+        userdata = UserData.objects.get(userrelation=user)
+        username = user.username
+        profilepic = 'https://stepsaasautomation.herokuapp.com/media/' + str(userdata.profilepic)
+        print(profilepic)
+    except UserData.DoesNotExist:
+        profilepic = 'https://stepsaasautomation.herokuapp.com/media/media/profilepic.png'
+        username = request.user
+    if request.method == 'POST':
+        form = Stepsform(request.POST, request.FILES)
+        if form.is_valid():
+            step = form.save(commit=False)
+            step.user = request.user.username
+            step.save()
+            form = Stepsform()
+            return render(
+                request,
+                'create_steps.html',
+                {
+                    'username': username,
+                    'profilepic': profilepic,
+                    'form': form
+                }
+            )
+        else:
+            form = Stepsform()
+            return render(
+                request,
+                'create_steps.html',
+                {
+                    'username': username,
+                    'profilepic': profilepic,
+                    'form': form
+                }
+            )
+    else:
+        form = Stepsform()
+        return render(
+            request,
+            'create_steps.html',
+            {
+                'username': username,
+                'profilepic': profilepic,
+                'form': form
+            }
+        )
+
+
+@login_required(login_url='/')
+def display_steps(request):
+    user = User.objects.get(username=request.user)
+    try:
+        userdata = UserData.objects.get(userrelation=user)
+        username = user.username
+        profilepic = 'https://stepsaasautomation.herokuapp.com/media/' + str(userdata.profilepic)
+    except UserData.DoesNotExist:
+        profilepic = 'https://stepsaasautomation.herokuapp.com/media/media/profilepic.png'
+        username = request.user
+    steps = Steps.objects.filter(user=request.user.username)
+    return render(
+        request,
+        'display_steps.html',
+        {
+            'username': username,
+            'profilepic': profilepic,
+            'steps': steps
+        }
+    )
+
+
+@login_required(login_url='/')
+def dashboard_details(request):
+    user = User.objects.get(username=request.user)
+    try:
+        userdata = UserData.objects.get(userrelation=user)
+        username = user.username
+        profilepic = 'https://stepsaasautomation.herokuapp.com/media/' + str(userdata.profilepic)
+    except UserData.DoesNotExist:
+        profilepic = 'https://stepsaasautomation.herokuapp.com/media/media/profilepic.png'
+        username = request.user
+    return render(
+        request,
+        'dashboard.html',
+        {
+            'username': username,
+            'profilepic': profilepic,
+        }
+    )
+
+
+@login_required(login_url='/')
+def template_details(request):
+    user = User.objects.get(username=request.user)
+    try:
+        userdata = UserData.objects.get(userrelation=user)
+        username = user.username
+        profilepic = 'https://stepsaasautomation.herokuapp.com/media/' + str(userdata.profilepic)
+    except UserData.DoesNotExist:
+        profilepic = 'https://stepsaasautomation.herokuapp.com/media/media/profilepic.png'
+        username = request.user
+    return render(
+        request,
+        'templates_page.html',
+        {
+            'username': username,
+            'profilepic': profilepic,
+        }
+    )
+
+
+# to display the documents of current user
+@login_required(login_url='/')
+def documents_details(request):
+    user = User.objects.get(username=request.user)
+    try:
+        userdata = UserData.objects.get(userrelation=user)
+        username = user.username
+        profilepic = 'https://stepsaasautomation.herokuapp.com/media/' + str(userdata.profilepic)
+    except UserData.DoesNotExist:
+        profilepic = 'https://stepsaasautomation.herokuapp.com/media/media/profilepic.png'
+        username = request.user
+    documents = Documents.objects.filter(user=request.user.username)
+    return render(
+        request,
+        'documents_page.html',
+        {
+            'username': username,
+            'profilepic': profilepic,
+            'documents': documents
+        }
+    )
+
+
+@login_required(login_url='/')
+def clients_details(request):
+    user = User.objects.get(username=request.user)
+    try:
+        userdata = UserData.objects.get(userrelation=user)
+        username = user.username
+        profilepic = 'https://stepsaasautomation.herokuapp.com/media/' + str(userdata.profilepic)
+    except UserData.DoesNotExist:
+        profilepic = 'https://stepsaasautomation.herokuapp.com/media/media/profilepic.png'
+        username = request.user
+    return render(
+        request,
+        'clients_page.html',
+        {
+            'username': username,
+            'profilepic': profilepic,
+        }
+    )
+
+
+@login_required(login_url='/')
+def cases_details(request):
+    user = User.objects.get(username=request.user)
+    try:
+        userdata = UserData.objects.get(userrelation=user)
+        username = user.username
+        profilepic = 'https://stepsaasautomation.herokuapp.com/media/' + str(userdata.profilepic)
+    except UserData.DoesNotExist:
+        profilepic = 'https://stepsaasautomation.herokuapp.com/media/media/profilepic.png'
+        username = request.user
+    return render(
+        request,
+        'cases_page.html',
+        {
+            'username': username,
+            'profilepic': profilepic,
+        }
+    )
+
+
+# user to add the documents
+@login_required(login_url='/')
+def create_document(request):
+    user = User.objects.get(username=request.user)
+    try:
+        userdata = UserData.objects.get(userrelation=user)
+        username = user.username
+        profilepic = 'https://stepsaasautomation.herokuapp.com/media/' + str(userdata.profilepic)
+    except UserData.DoesNotExist:
+        profilepic = 'https://stepsaasautomation.herokuapp.com/media/media/profilepic.png'
+        username = request.user
+    if request.method == 'POST':
+        form = DocumentsForm(request.POST, request.FILES)
+        if form.is_valid():
+            document = form.save(commit=False)
+            document.user = request.user.username
+            document.save()
+            return redirect('/documents')
+        else:
+            return render(
+                request,
+                'create_documents.html',
+                {
+                    'username': username,
+                    'profilepic': profilepic,
+                    'form': form
+                }
+            )
+    else:
+        form = DocumentsForm(initial={'apostille': 'No', 'notarize': 'No'})
+        return render(
+            request,
+            'create_documents.html',
+            {
+                'username': username,
+                'profilepic': profilepic,
+                'form': form
+            }
         )
 
 

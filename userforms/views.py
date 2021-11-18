@@ -10,7 +10,7 @@ from stepautomationapp.models import UserData
 from .models import FormsData, UserForms, ResponsesData
 
 
-@login_required(login_url='/login')
+@login_required(login_url='/')
 def userforms(request):
     all_forms = []
     userdetails = User.objects.get(username=request.user)
@@ -46,7 +46,7 @@ def userforms(request):
         )
 
 
-@login_required(login_url='/login')
+@login_required(login_url='/')
 def handleForm(request):
     formName = request.POST.get('formdata')
     form = FormsData.objects.get(formName=formName)
@@ -54,7 +54,8 @@ def handleForm(request):
                         content_type='application/json')
 
 
-@login_required(login_url='/login')
+# to create a form
+@login_required(login_url='/')
 def processForm(request):
     form_data = str(request.POST.get('form_data'))
     form_name = request.POST.get('form_name')
@@ -66,9 +67,11 @@ def processForm(request):
     else:
         has_file = False
     try:
+        # if the form name exists it will display error message
         user = UserForms.objects.get(form_user=str(request.user), form_name=form_name)
         return HttpResponse(json.dumps({'status_msg': 'NotOk'}), content_type='application/json')
     except UserForms.DoesNotExist:
+        # if the form name doesn't exists it will create a form with the given name
         userform = UserForms.objects.create(
             form_user=str(request.user),
             form_name=form_name,
@@ -84,6 +87,7 @@ def processForm(request):
                             content_type='application/json')
 
 
+# to get the responses form the forms
 def publishForm(request, form_id):
     form = UserForms.objects.get(id=form_id)
     if request.method == 'POST':
@@ -132,7 +136,8 @@ def publishForm(request, form_id):
         )
 
 
-@login_required(login_url='/login')
+# display all the forms of the current user
+@login_required(login_url='/')
 def get_all_forms(request):
     userdetails = User.objects.get(username=request.user)
     forms = UserForms.objects.filter(form_user=str(request.user))
@@ -165,7 +170,8 @@ def get_all_forms(request):
         )
 
 
-@login_required(login_url='/login')
+# to display all responses of the form
+@login_required(login_url='/')
 def get_form_responses(request, id):
     responses = []
     userdetails = User.objects.get(username=request.user)
