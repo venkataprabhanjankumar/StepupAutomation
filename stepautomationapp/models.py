@@ -54,3 +54,4 @@ class Documents(models.Model):
     step_document = models.FileField(upload_to='documents')
     notarize = models.CharField(max_length=10)
     apostille = models.CharField(max_length=10)
+    file_add_date = models.DateTimeField(auto_now=True)
