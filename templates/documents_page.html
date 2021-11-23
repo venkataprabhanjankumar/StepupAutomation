@@ -1,5 +1,6 @@
 {% extends 'base_page.html' %}
 {% load static %}
+{% load stringspliceing %}
 {% block style %}
     <!-- third party css -->
         <link href="{% static 'assets/css/vendor/dataTables.bootstrap5.css' %}" rel="stylesheet" type="text/css" />
@@ -62,7 +63,7 @@
                                                 {{each.description}}
                                             </td>
                                             <td>
-                                                <a href="/media/{{each.step_document}}" target="_blank">{{each.step_document}}</a>
+                                                <a href="/media/{{each.step_document}}" target="_blank">{{each.step_document | splicestring:10}}</a>
                                             </td>
                                             <td>
                                                 {{each.notarize}}
