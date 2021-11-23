@@ -51,31 +51,31 @@
                                 </thead>
                                 <tbody>
                                     {% for each in documents %}
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input" id="customCheck13">
-                                                        <label class="form-check-label" for="customCheck13">&nbsp;</label>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    {{each.description}}
-                                                </td>
-                                                <td>
-                                                    <a href="/media/{{each.step_document}}" target="_blank">{{each.step_document}}</a>
-                                                </td>
-                                                <td>
-                                                    {{each.notarize}}
-                                                </td>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input type="checkbox" class="form-check-input" id="customCheck13">
+                                                    <label class="form-check-label" for="customCheck13">&nbsp;</label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                {{each.description}}
+                                            </td>
+                                            <td>
+                                                <a href="/media/{{each.step_document}}" target="_blank">{{each.step_document}}</a>
+                                            </td>
+                                            <td>
+                                                {{each.notarize}}
+                                            </td>
 
-                                                <td>
-                                                    {{each.apostille}}
-                                                </td>
-                                                <td>
-                                                    {{each.file_add_date}}
-                                                </td>
-                                            </tr>
-                                        {% endfor %}
+                                            <td>
+                                                {{each.apostille}}
+                                            </td>
+                                            <td>
+                                                {{each.file_add_date | date}}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
 
                                 </tbody>
                             </table>
