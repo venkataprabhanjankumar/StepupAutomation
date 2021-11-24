@@ -24,7 +24,7 @@ from .forms import Stepsform, DocumentsForm
 def index(request):
     # if user is authenticated it will redirect to dashboard
     if request.user.is_authenticated:
-        return redirect('/steps')
+        return redirect('/dashboard')
     else:
         return render(
             request,
