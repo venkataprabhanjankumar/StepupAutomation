@@ -601,6 +601,46 @@ def cases_details(request):
     )
 
 
+@login_required(login_url='/')
+def project_details(request):
+    user = User.objects.get(username=request.user)
+    try:
+        userdata = UserData.objects.get(userrelation=user)
+        username = user.username
+        profilepic = 'https://stepsaasautomation.herokuapp.com/media/' + str(userdata.profilepic)
+    except UserData.DoesNotExist:
+        profilepic = 'https://stepsaasautomation.herokuapp.com/media/media/profilepic.png'
+        username = request.user
+    return render(
+        request,
+        'projects.html',
+        {
+            'username': username,
+            'profilepic': profilepic,
+        }
+    )
+
+
+@login_required(login_url='/')
+def customers_details(request):
+    user = User.objects.get(username=request.user)
+    try:
+        userdata = UserData.objects.get(userrelation=user)
+        username = user.username
+        profilepic = 'https://stepsaasautomation.herokuapp.com/media/' + str(userdata.profilepic)
+    except UserData.DoesNotExist:
+        profilepic = 'https://stepsaasautomation.herokuapp.com/media/media/profilepic.png'
+        username = request.user
+    return render(
+        request,
+        'customers.html',
+        {
+            'username': username,
+            'profilepic': profilepic,
+        }
+    )
+
+
 # user to add the documents
 @login_required(login_url='/')
 def create_document(request):
