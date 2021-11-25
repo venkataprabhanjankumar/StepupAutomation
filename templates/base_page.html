@@ -54,86 +54,59 @@
                         <li class="side-nav-title side-nav-item">Navigation</li>
 
                         <li class="side-nav-item">
-                            <a data-bs-toggle="collapse" href="#sidebarDashboards" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
+                            <a href="/dashboard" class="side-nav-link">
                                 <i class="uil uil-home"></i>
                                 <span> Dashboard </span>
                             </a>
-                            <div class="collapse" id="sidebarDashboards">
-                                <ul class="side-nav-second-level">
+                        </li>
+                        <li class="side-nav-item">
+                            <a data-bs-toggle="collapse" href="#sidebarresource" aria-expanded="false" aria-controls="sidebarresource" class="side-nav-link">
+                                <i class="mdi mdi-medal" aria-hidden="true"></i>
+                                <span> Standard </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse" id="sidebarresource">
+                                <ul class="side-nav-second-level" style="position: relative">
                                     <li>
-                                        <a href="/account-profile">
-                                            <i class="fa fa-user" aria-hidden="true"></i>
-                                            <span> ProfileInformation </span>
-                                        </a>
+                                        <a href="/documents">
+                                            <i class="uil uil-file-alt"></i><span>Files</span></a>
                                     </li>
                                     <li>
-                                        <a href="/steps">
-                                            <i class="uil-comments-alt"></i>
-                                            <span> Steps </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a data-bs-toggle="collapse" href="#sidebarresource" aria-expanded="false" aria-controls="sidebarresource">
-                                            <i class="mdi mdi-medal" aria-hidden="true"></i>
-                                            <span> Standard </span>
-                                            <span class="menu-arrow"></span>
-                                        </a>
-                                        <div class="collapse" id="sidebarresource">
-                                            <ul class="side-nav-third-level" style="position: relative">
-                                                <li>
-                                                    <a href="/documents">
-                                                        <i class="uil uil-file-alt"></i><span>Files</span></a>
-                                                </li>
-                                                <li>
-                                                    <a href="/templates"> <i class="uil uil-folder-open"></i> <span>Project Templates</span></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li class="side-nav-item">
-                                        <a data-bs-toggle="collapse" href="#sidebarcases" aria-expanded="false" aria-controls="sidebarcases">
-                                            <i class="uil-briefcase"></i>
-                                            <span> Cases </span>
-                                            <span class="menu-arrow"></span>
-                                        </a>
-                                        <div class="collapse" id="sidebarcases">
-                                            <ul class="side-nav-third-level" style="position: relative">
-                                                <li>
-                                                    <a href="/clients">Clients</a>
-                                                </li>
-                                                <li>
-                                                    <a href="/cases">Cases</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <a href="/customers">
-                                            <i class="uil uil-heart"></i>
-                                            <span> Customers </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="/projects">
-                                            <i class="uil uil-folder-open"></i>
-                                            <span> Projects </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="/forms">
-                                            <i class="fa fa-plus" aria-hidden="true"></i>
-                                            <span> Create Forms </span>
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="/forms/getforms">
-                                            <i class="fa fa-wpforms" aria-hidden="true"></i>
-                                            <span> Forms </span>
-                                        </a>
+                                        <a href="/templates"> <i class="uil uil-folder-open"></i> <span>Project Templates</span></a>
                                     </li>
                                 </ul>
                             </div>
+                        </li>
+                        <li class="side-nav-item">
+                            <a href="/customers" class="side-nav-link">
+                                <i class="uil uil-heart"></i>
+                                <span> Customers </span>
+                            </a>
+                        </li>
+                        <li class="side-nav-item">
+                            <a href="/projects" class="side-nav-link">
+                                <i class="uil uil-folder-open"></i>
+                                <span> Projects </span>
+                            </a>
+                        </li>
+                        <li class="side-nav-item">
+                            <a href="/steps" class="side-nav-link">
+                                <i class="uil-comments-alt"></i>
+                                <span> Steps </span>
+                            </a>
+                        </li>
+                        <li class="side-nav-item">
+                            <a href="/forms" class="side-nav-link">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                <span> Create Forms </span>
+                            </a>
+                        </li>
+
+                        <li class="side-nav-item">
+                            <a href="/forms/getforms" class="side-nav-link">
+                                <i class="fa fa-wpforms" aria-hidden="true"></i>
+                                <span> Forms </span>
+                            </a>
                         </li>
                     </ul>
                     <!-- End Sidebar -->
@@ -362,26 +335,25 @@
 
                                     <!-- item-->
                                     <a href="/account-profile" class="dropdown-item notify-item">
-                                        <i class="mdi mdi-account-circle me-1"></i>
-                                        <span>My Account</span>
+                                        <i class="mdi mdi-office-building me-1"></i>
+                                        <span>Account</span>
+                                    </a>
+                                    <!-- item-->
+                                    <a href="/account-profile" class="dropdown-item notify-item">
+                                        <i class="mdi mdi-account-outline me-1"></i>
+                                        <span>My Profile</span>
                                     </a>
 
                                     <!-- item-->
                                     <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <i class="mdi mdi-account-edit me-1"></i>
-                                        <span>Settings</span>
+                                        <i class="mdi mdi-account-multiple-plus-outline me-1"></i>
+                                        <span>Users</span>
                                     </a>
 
                                     <!-- item-->
                                     <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <i class="mdi mdi-lifebuoy me-1"></i>
-                                        <span>Support</span>
-                                    </a>
-
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <i class="mdi mdi-lock-outline me-1"></i>
-                                        <span>Lock Screen</span>
+                                        <i class="mdi mdi-account-key-outline me-1"></i>
+                                        <span>Permissions</span>
                                     </a>
 
                                     <!-- item-->
