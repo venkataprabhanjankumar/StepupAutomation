@@ -14,10 +14,10 @@ from django.conf import settings
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail, Email, To
 
-from .models import UserData, UserFiles, Steps, Documents
+from .models import UserData, UserFiles, Steps, Documents,Customers
 from .models import Country
 from userforms.models import UserForms
-from .forms import Stepsform, DocumentsForm
+from .forms import Stepsform, DocumentsForm, CustomersForm
 
 
 # landing page
@@ -631,12 +631,14 @@ def customers_details(request):
     except UserData.DoesNotExist:
         profilepic = 'https://stepsaasautomation.herokuapp.com/media/media/profilepic.png'
         username = request.user
+    customers = Customers.objects.filter(user=request.user.username)
     return render(
         request,
         'customers.html',
         {
             'username': username,
             'profilepic': profilepic,
+            'customers': customers
         }
     )
 
@@ -674,6 +676,46 @@ def create_document(request):
         return render(
             request,
             'create_documents.html',
+            {
+                'username': username,
+                'profilepic': profilepic,
+                'form': form
+            }
+        )
+
+
+@login_required(login_url='/')
+def create_customer(request):
+    user = User.objects.get(username=request.user)
+    try:
+        userdata = UserData.objects.get(userrelation=user)
+        username = user.username
+        profilepic = 'https://stepsaasautomation.herokuapp.com/media/' + str(userdata.profilepic)
+    except UserData.DoesNotExist:
+        profilepic = 'https://stepsaasautomation.herokuapp.com/media/media/profilepic.png'
+        username = request.user
+    if request.method == 'POST':
+        form = CustomersForm(request.POST)
+        if form.is_valid():
+            customer = form.save(commit=False)
+            customer.user = request.user.username
+            customer.save()
+            return redirect('/customers')
+        else:
+            return render(
+                request,
+                'create_customer.html',
+                {
+                    'username': username,
+                    'profilepic': profilepic,
+                    'form': form
+                }
+            )
+    else:
+        form = CustomersForm()
+        return render(
+            request,
+            'create_customer.html',
             {
                 'username': username,
                 'profilepic': profilepic,

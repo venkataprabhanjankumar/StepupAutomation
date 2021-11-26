@@ -21,7 +21,7 @@
                 <div class="card-body">
                     <div class="row mb-2">
                         <div class="col-sm-4">
-                            <a href="javascript:void(0);" class="btn btn-danger mb-2"><i class="mdi mdi-plus-circle me-2"></i> Add Customer</a>
+                            <a href="/createcustomer" class="btn btn-danger mb-2"><i class="mdi mdi-plus-circle me-2"></i> Add Customer</a>
                         </div>
                         <div class="col-sm-8">
                             <div class="text-sm-end">
@@ -52,108 +52,42 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="customCheck2">
-                                            <label class="form-check-label" for="customCheck2">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="m-0 d-inline-block align-middle font-16">
-                                            <a href="#" class="text-body">Jon &amp; Courtney Eldersveld</a>
-                                        </p>
-                                    </td>
-                                    <td>
-                                        (461) 3636077
-                                    </td>
-                                     <td>
-                                        abreslau0@gmail.com
-                                    </td>
-                                    <td>
-                                        Michigan
-                                    </td>
-                                    <td>
-                                        09/12/2018
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-success">Active</span>
-                                    </td>
+                                {% for customer in customers %}
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input" id="customCheck2">
+                                                <label class="form-check-label" for="customCheck2">&nbsp;</label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <p class="m-0 d-inline-block align-middle font-16">
+                                                <a href="#" class="text-body">{{customer.customer_name}}</a>
+                                            </p>
+                                        </td>
+                                        <td>
+                                            {{customer.phone_number}}
+                                        </td>
+                                         <td>
+                                            {{customer.email}}
+                                        </td>
+                                        <td>
+                                            {{customer.location}}
+                                        </td>
+                                        <td>
+                                            {{customer.customer_added_date | date}}
+                                        </td>
+                                        <td>
+                                            <span class="badge bg-success">Active</span>
+                                        </td>
 
-                                    <td class="table-action">
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="customCheck3">
-                                            <label class="form-check-label" for="customCheck3">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="m-0 d-inline-block align-middle font-16">
-                                            <a href="#" class="text-body">Prabhanjan</a>
-                                        </p>
-                                    </td>
-                                    <td>
-                                        (461) 3337241
-                                    </td>
-                                     <td>
-                                        prabhanjan@gmail.com
-                                    </td>
-                                    <td>
-                                        India
-                                    </td>
-                                    <td>
-                                        18/12/2018
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-success">Active</span>
-                                    </td>
-
-                                    <td class="table-action">
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="customCheck4">
-                                            <label class="form-check-label" for="customCheck4">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="m-0 d-inline-block align-middle font-16">
-                                            <a href="#" class="text-body">Roy</a>
-                                        </p>
-                                    </td>
-                                    <td>
-                                        (461) 89458256
-                                    </td>
-                                     <td>
-                                        roy0@gmail.com
-                                    </td>
-                                    <td>
-                                        NewYork
-                                    </td>
-                                    <td>
-                                        09/10/2018
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-success">Active</span>
-                                    </td>
-
-                                    <td class="table-action">
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
-                                    </td>
-                                </tr>
+                                        <td class="table-action">
+                                            <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
+                                            <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                            <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>

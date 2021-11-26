@@ -28,7 +28,8 @@ urlpatterns = [
     path('cases', views.cases_details, name='cases'),
     path('createdocument', views.create_document, name='create_document'),
     path('customers', views.customers_details, name='customer_details'),
-    path('projects', views.project_details, name='project_details')
+    path('projects', views.project_details, name='project_details'),
+    path('createcustomer', views.create_customer, name='create_customer')
 
 ]
 
