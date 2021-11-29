@@ -9,10 +9,10 @@
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
                           <li class="breadcrumb-item"><a href="/customers">Customers</a></li>
-                          <li class="breadcrumb-item">Add Customer</li>
+                          <li class="breadcrumb-item">Edit Customer</li>
                     </ol>
                 </div>
-                <h4 class="page-title">Add Customer</h4>
+                <h4 class="page-title">Edit Customer</h4>
             </div>
         </div>
     </div>
@@ -24,8 +24,7 @@
                       {% csrf_token %}
                       {{ form | crispy }}
                       <br/>
-                      <button type="submit" class="btn btn-success">{% trans 'Add' %}</button>
-                      <button type="reset" class="btn btn-success">{% trans 'Cancel' %}</button>
+                      <button type="submit" class="btn btn-success">{% trans 'Update' %}</button>
                   </form>
               </div>
             </div>

@@ -14,7 +14,7 @@ from django.conf import settings
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail, Email, To
 
-from .models import UserData, UserFiles, Steps, Documents,Customers
+from .models import UserData, UserFiles, Steps, Documents, Customers
 from .models import Country
 from userforms.models import UserForms
 from .forms import Stepsform, DocumentsForm, CustomersForm
@@ -641,6 +641,51 @@ def customers_details(request):
             'customers': customers
         }
     )
+
+
+@login_required(login_url='/')
+def edit_customer(request, customer_id):
+    user = User.objects.get(username=request.user)
+    try:
+        userdata = UserData.objects.get(userrelation=user)
+        username = user.username
+        profilepic = 'https://stepsaasautomation.herokuapp.com/media/' + str(userdata.profilepic)
+    except UserData.DoesNotExist:
+        profilepic = 'https://stepsaasautomation.herokuapp.com/media/media/profilepic.png'
+        username = request.user
+    customer = Customers.objects.get(id=customer_id)
+    if request.method == 'POST':
+        form = CustomersForm(instance=customer, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/editcustomer/' + str(customer_id))
+        else:
+            return render(
+                request,
+                'edit_customer.html',
+                {
+                    'username': username,
+                    'profilepic': profilepic,
+                    'form': form
+                }
+            )
+    else:
+        form = CustomersForm(instance=customer)
+        return render(
+            request,
+            'edit_customer.html',
+            {
+                'username': username,
+                'profilepic': profilepic,
+                'form': form
+            }
+        )
+
+
+@login_required(login_url='/')
+def delete_customer(request, customer_id):
+    Customers.objects.get(id=customer_id).delete()
+    return redirect('/customers')
 
 
 # user to add the documents
